@@ -9,3 +9,10 @@ Users who want to learn about how a stock market operates on a microscale (daytr
 
 ## Why is this project of interest to you?
 This project is of interested to me because I did a stock market competition last year and really enjoyed it. I think it's very fun and it can simulate the market (considering I'm also a _business_ _major_).
+
+
+## User Stories:
+* As a user, I want to be able to create a buy order of X number of shares and add it to my order list.
+* As a user, I want to be able to view a list of my past orders, longs or shorts.
+* As a user, I want to be able to view my profit/loss as I am making my trades.
+* As a user, I want to be able to see the ticker prices as they are being updated.
