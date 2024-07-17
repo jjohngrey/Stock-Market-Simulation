@@ -21,8 +21,9 @@ public class Stock {
         Random r = new Random(); 
         price = getPrice();
         int amount = 0;
-        amount = r.nextInt(2)+1;
-        price += amount * Math.random() >= 0.5 ? +1 : -1;
+        amount = r.nextInt(2) + 1;
+        int random = Math.random() >= 0.5 ? +1 : -1;
+        price += amount * random;
         return price;
     } 
 

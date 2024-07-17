@@ -20,20 +20,6 @@ public class Order {
         this.orderType = orderType;
     }
 
-    // EFFECTS: Prints order
-    public void printOrder(Order order) {
-        System.out.println("Ticker name: " + ticker);
-        int cost = price * shares;
-        if (orderType) {
-            System.out.println("Cost: -$" + cost);
-            System.out.println("Volume: +" + shares + " shares");
-        } else {
-            System.out.println("Cost: +$" + cost);
-            System.out.println("Volume: -" + shares + " shares");
-        }
-        System.out.println("Price: $" + price);
-    }
-
     // GET METHODS
     public Stock getStock() {
         return stock;

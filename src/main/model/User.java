@@ -11,7 +11,7 @@ public class User {
 
     private int shares;
     private List<Stock> ownedStocks;
-    private List<Order> orderHistory; // make somewhere else?
+    private List<Order> orderHistory;
 
     // MODIFIES: this
     // EFFECTS: Creates a username with given name and a starting balance of $10,000

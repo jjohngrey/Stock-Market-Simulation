@@ -138,7 +138,7 @@ public class App {
         List<Order> history = user.getOrderHistory();
         for (int i = 0; i < history.size(); i++) {
             Order order = history.get(i);
-            order.printOrder(order);
+            printOrder(order);
         }
     }
 
@@ -151,7 +151,6 @@ public class App {
     public LocalTime updateStock(LocalTime previousTime) {
         LocalTime currentTime = LocalTime.now();
         long difference = SECONDS.between(previousTime, currentTime);
-        System.out.println(difference);
 
         if (difference > 5) {
             int newPrice = stock.updateStockPrice();
@@ -160,5 +159,20 @@ public class App {
         } else {
             return previousTime;
         }
+    }
+
+    // EFFECTS: Prints order
+    public void printOrder(Order order) {
+        Stock s = order.getStock();
+        System.out.println("Ticker name: " + s.getTicker());
+        int cost = s.getPrice() * order.getShares();
+        if (order.getOrderType()) {
+            System.out.println("Cost: -$" + cost);
+            System.out.println("Volume: +" + order.getShares() + " shares");
+        } else {
+            System.out.println("Cost: +$" + cost);
+            System.out.println("Volume: -" + order.getShares() + " shares");
+        }
+        System.out.println("Price: $" + s.getPrice());
     }
 }
