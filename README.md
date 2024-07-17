@@ -12,7 +12,7 @@ This project is of interested to me because I did a stock market competition las
 
 ## User Stories:
 * As a user, I want to be able to create a buy order of X number of shares and add it to my order list.
-* * As a user, I want to be able to create a sell order of X number of shares and add it to my order list.
+* As a user, I want to be able to create a sell order of X number of shares and add it to my order list.
 * As a user, I want to be able to view a list of my past orders, longs or shorts.
 * As a user, I want to be able to view my profit/loss as I am making my trades.
 * As a user, I want to be able to see the ticker prices as they are being updated.
