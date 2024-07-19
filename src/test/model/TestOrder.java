@@ -29,6 +29,4 @@ public class TestOrder {
         assertTrue(testOrder1.getOrderType());
         assertFalse(testOrder2.getOrderType());
     }
-
-    // No tests for print order (part of ui)
 }
