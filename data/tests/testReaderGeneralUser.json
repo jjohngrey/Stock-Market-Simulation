@@ -1,0 +1,30 @@
+{
+    "shares": 5,
+    "ownedStocks": [],
+    "balance": 9950,
+    "orderHistory": [
+        {
+            "shares": 20,
+            "orderType": true,
+            "ticker": "CRZY",
+            "price": 10,
+            "stock": 
+                {
+                    "ticker": "CRZY",
+                    "price": 10
+                }
+        },
+        {
+            "shares": 15,
+            "orderType": false,
+            "ticker": "CRZY",
+            "price": 10,
+            "stock": 
+                {
+                    "ticker": "CRZY",
+                    "price": 10
+                }
+        }
+    ],
+    "username": "John"
+}

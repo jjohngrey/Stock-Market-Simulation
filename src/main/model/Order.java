@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an order on the market with
 // a stock ticker symbol, current price, amount of shares, and buying or selling
-public class Order {
+public class Order implements Writable {
     private Stock stock;
     private String ticker;                 // stock ticker
     private int price;                     // price at which the stock is bought/sold
@@ -32,6 +35,16 @@ public class Order {
     public boolean getOrderType() {
         return orderType;
     }
-
+    
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("stock", stock);
+        json.put("ticker", ticker);
+        json.put("price", price);
+        json.put("shares", shares);
+        json.put("orderType", orderType);
+        return json;
+    }
 }
 

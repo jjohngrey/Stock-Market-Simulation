@@ -1,4 +1,5 @@
 package model;
+
 import java.util.Random;
 
 // Represents a stock on the market with
@@ -36,5 +37,6 @@ public class Stock {
     public int getPrice() {
         return price;
     }
+
 }
 

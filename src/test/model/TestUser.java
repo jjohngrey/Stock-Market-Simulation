@@ -28,10 +28,9 @@ public class TestUser {
         assertEquals(0, testUser.getShareAmount());
 
         List<Stock> ownedStocks = testUser.getOwnedStocks();
-        List<Order> orderHistory = testUser.getOrderHistory();
 
         assertEquals(0, ownedStocks.size());
-        assertEquals(0, orderHistory.size());
+        assertEquals(0, testUser.numOrders());
     }
 
     @Test
@@ -69,6 +68,6 @@ public class TestUser {
         List<Order> orderHistory = testUser.getOrderHistory();
         testUser.addToOrderHistory(testOrder1);
         assertEquals(testOrder1, orderHistory.get(0));
-        assertEquals(1, orderHistory.size());
+        assertEquals(1, testUser.numOrders());
     }
 }

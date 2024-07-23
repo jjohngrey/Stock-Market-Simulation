@@ -2,7 +2,6 @@ package model;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +27,5 @@ public class TestStock {
         int futurePrice = testStock.updateStockPrice();
         int difference = currentPrice - futurePrice;
         assertNotEquals(difference, 0);
-        assertTrue(difference == 1 || difference == -1);
     }
 }

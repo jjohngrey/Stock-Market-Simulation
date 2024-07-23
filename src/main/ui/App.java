@@ -3,20 +3,28 @@ package ui;
 import model.User;
 import model.Order;
 import model.Stock;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.util.Scanner;
 import java.util.List;
 import java.time.LocalTime;
 import static java.time.temporal.ChronoUnit.SECONDS;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 // Stock simulation
 public class App {
+    private static final String JSON_STORE = "./data/workroom.json";
     private User user;
     private Stock stock;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the simulation application
-    public App() {
+    public App() throws FileNotFoundException {
         runMarket();
     }
 
@@ -27,6 +35,8 @@ public class App {
         stock = new Stock("CRZY", 10);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -45,27 +55,31 @@ public class App {
             command = command.toLowerCase();
             
 
-            if (command.equals("q")) {
+            if (command.equals("quit")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
             }
         }
 
-        System.out.println("\nGoodbye!");
+        System.out.println("\nMarkets have closed for today! Come back again tomorrow!");
     }
 
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        if (command.equals("b")) {
-            buyStock();
-        } else if (command.equals("s")) {
-            sellStock();
-        } else if (command.equals("h")) {
-            viewHistory();
-        } else if (command.equals("c")) {
+        if (command.equals("check")) {
             checkBalance();
+        } else if (command.equals("buy")) {
+            buyStock();
+        } else if (command.equals("sell")) {
+            sellStock();
+        } else if (command.equals("history")) {
+            viewHistory();
+        } else if (command.equals("save")) {
+            saveUser();
+        } else if (command.equals("load")) {
+            loadUser();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -74,11 +88,20 @@ public class App {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\tb -> buy");
-        System.out.println("\ts -> sell");
-        System.out.println("\th -> view order history");
-        System.out.println("\tc -> check balance");
-        System.out.println("\tq -> quit");
+        System.out.println("");
+        System.out.println("\tcheck     ->      check balance");
+        System.out.println("");
+        System.out.println("\tbuy       ->      buy CRZY stock");
+        System.out.println("");
+        System.out.println("\tsell      ->      sell CRZY stock");
+        System.out.println("");
+        System.out.println("\thistory   ->      view order history");
+        System.out.println("");
+        System.out.println("\tsave      ->      save work room to file");
+        System.out.println("");
+        System.out.println("\tload      ->      load work room from file");
+        System.out.println("");
+        System.out.println("\tquit      ->      quit");
     }
 
     // MODIFIES: User
@@ -93,11 +116,11 @@ public class App {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (user.getBalance() >= totalCost) {        // if funds are sufficient
-                user.decreaseBalance(totalCost);
-                user.increaseShares(volume);
-                Order order = new Order(selected, volume, true);
-                user.addToOrderHistory(order);
+            if (user.getBalance() >= totalCost) {               // if funds are sufficient
+                user.decreaseBalance(totalCost);                // incur costs
+                user.increaseShares(volume);                    // receive shares
+                Order order = new Order(selected, volume, true);    // create new order
+                user.addToOrderHistory(order);                  // add to orderHistory
                 System.out.println("You have bought " + volume + " shares of " + 
                     stock.getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
@@ -120,10 +143,10 @@ public class App {
         if (volume >= 0) {
             int totalCost = volume * price;
             if (user.getShareAmount() >= volume) {        // if share amount are sufficient
-                user.increaseBalance(totalCost);
-                user.decreaseShares(volume);
-                Order order = new Order(selected, volume, false);
-                user.addToOrderHistory(order);
+                user.increaseBalance(totalCost);          // receive money
+                user.decreaseShares(volume);              // drop shares
+                Order order = new Order(selected, volume, false);   // create new order
+                user.addToOrderHistory(order);            // add to orderHistory
                 System.out.println("You have sold " + volume + " shares of " + 
                     stock.getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
@@ -174,5 +197,28 @@ public class App {
             System.out.println("Volume: -" + order.getShares() + " shares");
         }
         System.out.println("Price: $" + s.getPrice());
+    }
+
+    // EFFECTS: saves the user to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved " + user.getUsername() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads user from file
+    private void loadUser() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded " + user.getUsername() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
