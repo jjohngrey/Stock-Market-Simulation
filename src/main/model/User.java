@@ -9,7 +9,7 @@ import persistence.Writable;
 
 // Represents an order on the market with
 // a stock ticker symbol, current price, amount of shares, and buying or selling
-public class User implements Writable{
+public class User implements Writable {
     private String username;
     private int balance;
 

@@ -53,7 +53,6 @@ public class App {
             previousTime = updateStock(previousTime);
             command = input.next();
             command = command.toLowerCase();
-            
 
             if (command.equals("quit")) {
                 keepGoing = false;
@@ -106,8 +105,8 @@ public class App {
 
     // MODIFIES: User
     // EFFECTS: Checks if user has enough money to buy, if they do, buys shares
-    //          and adds to order history
-    //          otherwise, does nothing
+    // and adds to order history
+    // otherwise, does nothing
     public void buyStock() {
         Stock selected = stock;
         System.out.print("Enter number of shares to buy: ");
@@ -116,13 +115,13 @@ public class App {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (user.getBalance() >= totalCost) {               // if funds are sufficient
-                user.decreaseBalance(totalCost);                // incur costs
-                user.increaseShares(volume);                    // receive shares
-                Order order = new Order(selected, volume, true);    // create new order
-                user.addToOrderHistory(order);                  // add to orderHistory
-                System.out.println("You have bought " + volume + " shares of " + 
-                    stock.getTicker() + " at $" + price + " price.");
+            if (user.getBalance() >= totalCost) { // if funds are sufficient
+                user.decreaseBalance(totalCost); // incur costs
+                user.increaseShares(volume); // receive shares
+                Order order = new Order(selected, volume, true); // create new order
+                user.addToOrderHistory(order); // add to orderHistory
+                System.out.println("You have bought " + volume + " shares of "
+                        + stock.getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
             } else {
                 System.out.println("You do not have sufficient funds.");
@@ -132,8 +131,8 @@ public class App {
 
     // MODIFIES: User
     // EFFECTS: Checks if user has enough shares to sell, if they do, sells shares
-    //          and adds to order history
-    //          otherwise, does nothing
+    // and adds to order history
+    // otherwise, does nothing
     public void sellStock() {
         Stock selected = stock;
         System.out.print("Enter number of shares to sell: ");
@@ -142,13 +141,13 @@ public class App {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (user.getShareAmount() >= volume) {        // if share amount are sufficient
-                user.increaseBalance(totalCost);          // receive money
-                user.decreaseShares(volume);              // drop shares
-                Order order = new Order(selected, volume, false);   // create new order
-                user.addToOrderHistory(order);            // add to orderHistory
-                System.out.println("You have sold " + volume + " shares of " + 
-                    stock.getTicker() + " at $" + price + " price.");
+            if (user.getShareAmount() >= volume) { // if share amount are sufficient
+                user.increaseBalance(totalCost); // receive money
+                user.decreaseShares(volume); // drop shares
+                Order order = new Order(selected, volume, false); // create new order
+                user.addToOrderHistory(order); // add to orderHistory
+                System.out.println("You have sold " + volume + " shares of " 
+                        + stock.getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
             } else {
                 System.out.println("You do not have that many shares to sell.");
@@ -167,15 +166,16 @@ public class App {
 
     // EFFECTS: Prints user current balance
     public void checkBalance() {
-        System.out.println("You have $" + user.getBalance() + "."); 
+        System.out.println("You have $" + user.getBalance() + ".");
     }
 
-    // EFFECTS: Updates stock price on the UI by checking previous time and current time
+    // EFFECTS: Updates stock price on the UI by checking previous time and current
+    // time
     public LocalTime updateStock(LocalTime previousTime) {
         LocalTime currentTime = LocalTime.now();
         long difference = SECONDS.between(previousTime, currentTime);
 
-        if (difference > 5) {
+        if (difference > 1) {
             int newPrice = stock.updateStockPrice();
             System.out.println("CRZY is now $" + newPrice);
             return currentTime;
