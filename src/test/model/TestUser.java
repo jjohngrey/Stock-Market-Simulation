@@ -17,7 +17,7 @@ public class TestUser {
     void runBefore() {
         testUser = new User("John");
         testStock = new Stock("CRZY", 5);
-        testOrder1 = new Order(testStock, 500, true);
+        testOrder1 = new Order(testStock, "CRZY", 5, 500, true);
 
     }
 

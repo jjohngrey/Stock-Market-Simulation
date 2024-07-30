@@ -15,16 +15,15 @@ public class TestOrder {
     @BeforeEach
     void runBefore() {
         testStock = new Stock("CRZY", 5);
-        testOrder1 = new Order(testStock, 500, true);
-        testOrder2 = new Order(testStock, 400, false);
+        testOrder1 = new Order(testStock, "CRZY", 5, 500, true);
+        testOrder2 = new Order(testStock, "CRZY", 5, 400, false);
     }
 
     @Test
     void testConstructor() {
         assertEquals(testStock, testOrder1.getStock());
-        Stock stock = testOrder1.getStock();
-        assertEquals("CRZY", stock.getTicker());
-        assertEquals(5, stock.getPrice());
+        assertEquals("CRZY", testOrder1.getTicker());
+        assertEquals(5, testOrder1.getPrice());
         assertEquals(500, testOrder1.getShares());
         assertTrue(testOrder1.getOrderType());
         assertFalse(testOrder2.getOrderType());

@@ -15,10 +15,10 @@ public class Order implements Writable {
     // REQUIRES: Shares must be >= 0
     // MODIFIES: this
     // EFFECTS: Creates an order with given stock, shares and ordertype
-    public Order(Stock stock, int shares, boolean orderType) {
+    public Order(Stock stock, String ticker, int price, int shares, boolean orderType) {
         this.stock = stock;
-        this.ticker = stock.getTicker();
-        this.price = stock.getPrice();
+        this.ticker = ticker;
+        this.price = price;
         this.shares = shares;
         this.orderType = orderType;
     }
@@ -26,6 +26,14 @@ public class Order implements Writable {
     // GET METHODS
     public Stock getStock() {
         return stock;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public int getShares() {

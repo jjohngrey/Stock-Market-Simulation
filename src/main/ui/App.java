@@ -111,6 +111,7 @@ public class App {
         Stock selected = stock;
         System.out.print("Enter number of shares to buy: ");
         int volume = input.nextInt();
+        String ticker = selected.getTicker();
         int price = selected.getPrice();
 
         if (volume >= 0) {
@@ -118,7 +119,7 @@ public class App {
             if (user.getBalance() >= totalCost) { // if funds are sufficient
                 user.decreaseBalance(totalCost); // incur costs
                 user.increaseShares(volume); // receive shares
-                Order order = new Order(selected, volume, true); // create new order
+                Order order = new Order(selected, ticker, price, volume, true); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have bought " + volume + " shares of "
                         + stock.getTicker() + " at $" + price + " price.");
@@ -138,13 +139,14 @@ public class App {
         System.out.print("Enter number of shares to sell: ");
         int volume = input.nextInt();
         int price = selected.getPrice();
+        String ticker = selected.getTicker();
 
         if (volume >= 0) {
             int totalCost = volume * price;
             if (user.getShareAmount() >= volume) { // if share amount are sufficient
                 user.increaseBalance(totalCost); // receive money
                 user.decreaseShares(volume); // drop shares
-                Order order = new Order(selected, volume, false); // create new order
+                Order order = new Order(selected, ticker, price, volume, false); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have sold " + volume + " shares of " 
                         + stock.getTicker() + " at $" + price + " price.");
@@ -188,7 +190,7 @@ public class App {
     public void printOrder(Order order) {
         Stock s = order.getStock();
         System.out.println("Ticker name: " + s.getTicker());
-        int cost = s.getPrice() * order.getShares();
+        int cost = order.getPrice() * order.getShares();
         if (order.getOrderType()) {
             System.out.println("Cost: -$" + cost);
             System.out.println("Volume: +" + order.getShares() + " shares");
@@ -196,7 +198,7 @@ public class App {
             System.out.println("Cost: +$" + cost);
             System.out.println("Volume: -" + order.getShares() + " shares");
         }
-        System.out.println("Price: $" + s.getPrice());
+        System.out.println("Price: $" + order.getPrice());
     }
 
     // EFFECTS: saves the user to file

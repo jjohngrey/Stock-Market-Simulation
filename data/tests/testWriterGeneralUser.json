@@ -8,14 +8,14 @@
             "orderType": true,
             "ticker": "CRZY",
             "price": 10,
-            "stock": "model.Stock@69da0b12"
+            "stock": "model.Stock@57adfab0"
         },
         {
             "shares": 15,
             "orderType": false,
             "ticker": "CRZY",
             "price": 10,
-            "stock": "model.Stock@69da0b12"
+            "stock": "model.Stock@57adfab0"
         }
     ],
     "username": "John"

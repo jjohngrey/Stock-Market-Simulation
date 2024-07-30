@@ -82,7 +82,7 @@ public class JsonReader {
         Stock stock = new Stock(ticker, price);
         int shares = jsonObject.getInt("shares");
         boolean orderType = jsonObject.getBoolean("orderType");
-        Order order = new Order(stock, shares, orderType);
+        Order order = new Order(stock, ticker, price, shares, orderType);
         user.addToOrderHistory(order);
     }
 }

@@ -19,7 +19,7 @@ class TestJsonWriter extends TestJson {
             User user = new User("Test User");
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
-            fail("IOException was expected");
+            fail("IOException was egixpected");
         } catch (IOException e) {
             // pass
         }
@@ -51,8 +51,8 @@ class TestJsonWriter extends TestJson {
         try {
             User user = new User("John");
             Stock stock = new Stock("CRZY", 10);
-            Order order1 = new Order(stock, 20, true);
-            Order order2 = new Order(stock, 15, false);
+            Order order1 = new Order(stock, "CRZY", 10, 20, true);
+            Order order2 = new Order(stock, "CRZY", 10, 15, false);
 
             user.addToOrderHistory(order1);
             user.addToOrderHistory(order2);
