@@ -1,102 +1,139 @@
-package ui.gui;
+// package ui.gui;
 
-import java.awt.Color;
+// import java.awt.Color;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+// import javax.swing.JButton;
+// import javax.swing.JLabel;
+// import javax.swing.JPanel;
+// import javax.swing.JTextField;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
 
-import model.Order;
-import model.Stock;
-import model.User;
-import model.Market;
+// import model.Order;
+// import model.Stock;
+// import model.User;
+// import model.Market;
 
-/*
- * Represents the panel in which the scoreboard is displayed.
- */
-public class BuyPanel extends JPanel implements ActionListener {
+// /*
+//  * Represents the panel in which the scoreboard is displayed.
+//  */
+// public class BuyPanel extends JPanel implements ActionListener {
 
-    private JLabel buyLabel;
-    private JTextField buyField;
+//     private JLabel buyCrzyLabel;
+//     private JTextField buyCrzyField;
 
-    private Market market;
-    private UserPanel userPanel;
-    private HistoryPanel historyPanel;
-    private User user;
+//     private JLabel buyTameLabel;
+//     private JTextField buyTameField;
 
-    // Constructs a score panel
-    // effects: sets the background colour and draws the initial labels;
-    // updates this with the game whose score is to be displayed
-    public BuyPanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
-        this.market = market;
-        this.userPanel = mp;
-        this.historyPanel = hp;
-        this.user = user;
+//     private Market market;
+//     private UserPanel userPanel;
+//     private HistoryPanel historyPanel;
+//     private User user;
 
-        setBackground(new Color(180, 180, 180));
-        setBounds(250, 250, 250, 250);
+//     // Constructs a score panel
+//     // effects: sets the background colour and draws the initial labels;
+//     // updates this with the game whose score is to be displayed
+//     public BuyPanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
+//         this.market = market;
+//         this.userPanel = mp;
+//         this.historyPanel = hp;
+//         this.user = user;
 
-        JButton btnBuy = new JButton("Buy");
-        btnBuy.setActionCommand("Buy");
-        btnBuy.addActionListener(this);
-        // Sets "this" object as an action listener for btn
-        // so that when the btn is clicked,
-        // this.actionPerformed(ActionEvent e) will be called.
-        // You could also set a different object, if you wanted
-        // a different object to respond to the button click
+//         setBackground(new Color(180, 180, 180));
+//         setBounds(250, 250, 250, 250);
 
-        buyLabel = new JLabel("Buy: ");
-        buyField = new JTextField(5);
+//         JButton btnBuyCrzy = new JButton("+");
+//         btnBuyCrzy.setActionCommand("Buy CRZY");
+//         btnBuyCrzy.addActionListener(this);
+//         buyCrzyLabel = new JLabel("Buy CRZY: ");
+//         buyCrzyField = new JTextField(5);
+//         add(buyCrzyLabel);
+//         add(buyCrzyField);
+//         add(btnBuyCrzy);
 
-        add(buyLabel);
-        add(buyField);
-        add(btnBuy);
-    }
+//         JButton btnBuyTame = new JButton("+");
+//         btnBuyTame.setActionCommand("Buy TAME");
+//         btnBuyTame.addActionListener(this);
+//         buyTameLabel = new JLabel("Buy TAME: ");
+//         buyTameField = new JTextField(5);
+//         add(buyTameLabel);
+//         add(buyTameField);
+//         add(btnBuyTame);
+//     }
 
-    // This is the method that is called when the JButton btn is clicked
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Buy")) {
-            buyStock();
-            userPanel.checkBalance();
-            userPanel.checkShares();
-            buyField.setText("");
-            historyPanel.produceHistory(user);
-        }
-    }
+//     // This is the method that is called when the JButton btn is clicked
+//     public void actionPerformed(ActionEvent e) {
+//         if (e.getActionCommand().equals("Buy CRZY")) {
+//             buyCrzyStock();
+//             userPanel.checkBalance();
+//             userPanel.checkCrzyShares();
+//             buyCrzyField.setText("");
+//             historyPanel.produceHistory(user);
+//         } else if (e.getActionCommand().equals("Buy TAME")) {
+//             buyTameStock();
+//             userPanel.checkBalance();
+//             userPanel.checkTameShares();
+//             buyTameField.setText("");
+//             historyPanel.produceHistory(user);
+//         }
+//     }
 
-    // MODIFIES: User
-    // EFFECTS: Checks if user has enough money to buy, if they do, buys shares
-    // and adds to order history
-    // otherwise, does nothing
-    public void buyStock() {
-        Stock selected = market.getStock();
-        int volume = Integer.valueOf(buyField.getText());
-        String ticker = selected.getTicker();
-        int price = selected.getPrice();
+//     // MODIFIES: User
+//     // EFFECTS: Checks if user has enough money to buy, if they do, buys shares
+//     // and adds to order history
+//     // otherwise, does nothing
+//     public void buyCrzyStock() {
+//         Stock selected = market.getCrzyStock();
+//         int volume = Integer.valueOf(buyCrzyField.getText());
+//         String ticker = selected.getTicker();
+//         int price = selected.getPrice();
 
-        if (volume >= 0) {
-            int totalCost = volume * price;
-            if (user.getBalance() >= totalCost) { // if funds are sufficient
-                user.decreaseBalance(totalCost); // incur costs
-                user.increaseShares(volume); // receive shares
-                Order order = new Order(selected, ticker, price, volume, true); // create new order
-                user.addToOrderHistory(order); // add to orderHistory
-                System.out.println("You have bought " + volume + " shares of "
-                        + market.getStock().getTicker() + " at $" + price + " price.");
-                System.out.println("Order is successful.");
-            } else {
-                System.out.println("You do not have sufficient funds.");
-            }
-        }
-    }
+//         if (volume >= 0) {
+//             int totalCost = volume * price;
+//             if (user.getBalance() >= totalCost) { // if funds are sufficient
+//                 user.decreaseBalance(totalCost); // incur costs
+//                 user.increaseCrzyShares(volume); // receive shares
+//                 Order order = new Order(selected, ticker, price, volume, true); // create new order
+//                 user.addToOrderHistory(order); // add to orderHistory
+//                 System.out.println("You have bought " + volume + " shares of "
+//                         + market.getCrzyStock().getTicker() + " at $" + price + " price.");
+//                 System.out.println("Order is successful.");
+//             } else {
+//                 System.out.println("You do not have sufficient funds.");
+//             }
+//         }
+//     }
 
-    // MODIFIES: this
-    // EFFECTS: changes the user to the loaded user
-    public void setUser(User user) {
-        this.user = user;
-    }
-}
+//     // MODIFIES: User
+//     // EFFECTS: Checks if user has enough money to buy, if they do, buys shares
+//     // and adds to order history
+//     // otherwise, does nothing
+//     public void buyTameStock() {
+//         Stock selected = market.getTameStock();
+//         int volume = Integer.valueOf(buyCrzyField.getText());
+//         String ticker = selected.getTicker();
+//         int price = selected.getPrice();
+
+//         if (volume >= 0) {
+//             int totalCost = volume * price;
+//             if (user.getBalance() >= totalCost) { // if funds are sufficient
+//                 user.decreaseBalance(totalCost); // incur costs
+//                 user.increaseTameShares(volume); // receive shares
+//                 Order order = new Order(selected, ticker, price, volume, true); // create new order
+//                 user.addToOrderHistory(order); // add to orderHistory
+//                 System.out.println("You have bought " + volume + " shares of "
+//                         + market.getTameStock().getTicker() + " at $" + price + " price.");
+//                 System.out.println("Order is successful.");
+//             } else {
+//                 System.out.println("You do not have sufficient funds.");
+//             }
+//         }
+//     }
+
+//     // MODIFIES: this
+//     // EFFECTS: changes the user to the loaded user
+//     public void setUser(User user) {
+//         this.user = user;
+//     }
+// }

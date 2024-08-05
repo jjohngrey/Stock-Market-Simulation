@@ -11,7 +11,7 @@ public class TestStock {
     
     @BeforeEach
     void runBefore() {
-        testStock = new Stock("CRZY", 5);
+        testStock = new CRZYStock(5);
     }
 
     @Test

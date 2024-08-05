@@ -16,8 +16,8 @@ public class StockMarketApp extends JFrame {
 
     private Market market;
     private UserPanel up;
-    private BuyPanel bp;
-    private SellPanel sp;
+    private CrzyPanel cp;
+    private TamePanel tp;
     private HistoryPanel hp;
 
     public StockMarketApp() throws FileNotFoundException {
@@ -34,13 +34,13 @@ public class StockMarketApp extends JFrame {
         market = new Market();
 
         hp = new HistoryPanel(market.getUser());
-        up = new UserPanel(market, hp, bp, sp);
-        bp = new BuyPanel(market, up, hp, market.getUser());
-        sp = new SellPanel(market, up, hp, market.getUser());
+        up = new UserPanel(market, hp, cp, tp);
+        cp = new CrzyPanel(market, up, hp, market.getUser());
+        tp = new TamePanel(market, up, hp, market.getUser());
 
         add(up);
-        add(bp);
-        add(sp);
+        add(cp);
+        add(tp);
         add(hp);
 
         pack();

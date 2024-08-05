@@ -4,7 +4,7 @@ import java.util.Random;
 
 // Represents a stock on the market with
 // a ticker symbol and price name
-public class Stock {
+public abstract class Stock {
     private String ticker;      // ticker symbol
     private int price;          // stock price
     
@@ -27,9 +27,11 @@ public class Stock {
         int random = Math.random() >= 0.5 ? +1 : -1;
         price += amount * random;
         if (price < 0) {
+            price = 0;
             return 0;
+        } else {
+            return price;
         }
-        return price;
     } 
 
     // GET METHODS

@@ -21,13 +21,13 @@ This project is of interested to me because I did a stock market competition las
 
 ## Instructions for Grader:
 
-* You can generate the first required action related to the user story "adding multiple Xs to a Y" by buying a positive number of stocks and pressing the buy button.
-* You can generate the second required action related to the user story "adding multiple Xs to a Y" by selling a positive number of stocks (ensuring you have owned at least that many shares) and pressing the sell button.
+* You can generate the first required action related to adding multiple orders to a order history by buying/selling a positive number of stocks and pressing the buy/sell button or by loading in a previous game with a order history.
+* You can generate the second required action related to adding multiple orders to a order history by selling a positive number of stocks (ensuring you have owned at least that many shares) and pressing the sell button.
 * You can locate my visual component by looking into UserPanel file and seeing that the logo was uploaded.
 * You can save the state of my application by pressing the save button after making some buy/sell changes.
 * You can reload the state of my application by pressing the load button.
 
-## To add/fix:
+## TODO/fix:
 * More stocks
 * Graph showing balance
 * Not having buy/sell stocks updated on the same loaded user

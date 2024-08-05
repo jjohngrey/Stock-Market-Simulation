@@ -37,6 +37,14 @@ public class HistoryPanel extends JPanel implements ActionListener {
         btnHistory.setActionCommand("History");
         btnHistory.addActionListener(this);
 
+        JButton btnCrzyHistory = new JButton("CRZY");
+        btnCrzyHistory.setActionCommand("CRZY");
+        btnCrzyHistory.addActionListener(this);
+
+        JButton btnTameHistory = new JButton("TAME");
+        btnTameHistory.setActionCommand("TAME");
+        btnTameHistory.addActionListener(this);
+
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Ticker");
         tableModel.addColumn("Price");
@@ -48,6 +56,8 @@ public class HistoryPanel extends JPanel implements ActionListener {
         JScrollPane sp = new JScrollPane(tableHistory);
 
         add(btnHistory);
+        add(btnCrzyHistory);
+        add(btnTameHistory);
         add(sp);
     }
 
@@ -55,6 +65,10 @@ public class HistoryPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("History")) {
             produceHistory(user);
+        } else if (e.getActionCommand().equals("CRZY")) {
+            produceCrzyHistory(user);
+        } else if (e.getActionCommand().equals("TAME")) {
+            produceTameHistory(user);
         }
     }
 
@@ -70,6 +84,43 @@ public class HistoryPanel extends JPanel implements ActionListener {
             } else {
                 Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
                 tableModel.addRow(object);
+            }
+
+        }
+    }
+
+    // EFFECTS: For order in order history, prints the order
+    public void produceCrzyHistory(User user) {
+        tableModel.setRowCount(0);
+        List<Order> orderHistory = user.getOrderHistory();
+        for (int i = 0; i < orderHistory.size(); i++) {
+            Order order = orderHistory.get(i);
+            if (order.getTicker().equals("CRZY")) {
+                if (order.getOrderType()) {
+                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" };
+                    tableModel.addRow(obj);
+                } else {
+                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
+                    tableModel.addRow(object);
+                }
+            }
+        }
+    }
+
+    // EFFECTS: For order in order history, prints the order
+    public void produceTameHistory(User user) {
+        tableModel.setRowCount(0);
+        List<Order> orderHistory = user.getOrderHistory();
+        for (int i = 0; i < orderHistory.size(); i++) {
+            Order order = orderHistory.get(i);
+            if (order.getTicker().equals("TAME")) {
+                if (order.getOrderType()) {
+                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" };
+                    tableModel.addRow(obj);
+                } else {
+                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
+                    tableModel.addRow(object);
+                }
             }
 
         }

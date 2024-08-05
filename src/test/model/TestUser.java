@@ -16,7 +16,7 @@ public class TestUser {
     @BeforeEach
     void runBefore() {
         testUser = new User("John");
-        testStock = new Stock("CRZY", 5);
+        testStock = new CRZYStock(5);
         testOrder1 = new Order(testStock, "CRZY", 5, 500, true);
 
     }
@@ -25,11 +25,8 @@ public class TestUser {
     void testConstructor() {
         assertEquals("John", testUser.getUsername());
         assertEquals(10000, testUser.getBalance());
-        assertEquals(0, testUser.getShareAmount());
+        assertEquals(0, testUser.getCrzyShareAmount());
 
-        List<Stock> ownedStocks = testUser.getOwnedStocks();
-
-        assertEquals(0, ownedStocks.size());
         assertEquals(0, testUser.numOrders());
     }
 
@@ -50,16 +47,16 @@ public class TestUser {
     @Test
     // Tests if share increases
     void testIncreaseShares() {        
-        testUser.increaseShares(200);
-        assertEquals(200, testUser.getShareAmount());
+        testUser.increaseCrzyShares(200);
+        assertEquals(200, testUser.getCrzyShareAmount());
     }
 
     @Test
     // Tests if share decreases
     void testDecreaseShares() {        
-        testUser.increaseShares(200);
-        testUser.decreaseShares(190);
-        assertEquals(10, testUser.getShareAmount());
+        testUser.increaseCrzyShares(200);
+        testUser.decreaseCrzyShares(190);
+        assertEquals(10, testUser.getCrzyShareAmount());
     }
 
     @Test

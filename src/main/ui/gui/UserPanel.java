@@ -31,22 +31,25 @@ public class UserPanel extends JPanel implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private JLabel stockPriceLabel;
     private JLabel balanceLabel;
-    private JLabel shareLabel;
+
+    private JLabel crzyStockPriceLabel;
+    private JLabel crzyShareLabel;
+
+    private JLabel tameStockPriceLabel;
+    private JLabel tameShareLabel;
+
     private JLabel iconImage;
 
     private Market market;
     private HistoryPanel historyPanel;
-    private BuyPanel buyPanel;
-    private SellPanel sellPanel;
     private User user;
     
 
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
     // updates this with the game whose score is to be displayed
-    public UserPanel(Market market, HistoryPanel hp, BuyPanel bp, SellPanel sp) {
+    public UserPanel(Market market, HistoryPanel hp, CrzyPanel cp, TamePanel tp) {
         this.market = market;
         this.historyPanel = hp;
         // this.buyPanel = bp;
@@ -64,23 +67,26 @@ public class UserPanel extends JPanel implements ActionListener {
         btnLoad.setActionCommand("Load");
         btnSave.addActionListener(this);
         btnLoad.addActionListener(this);
-        // Sets "this" object as an action listener for btn
-        // so that when the btn is clicked,
-        // this.actionPerformed(ActionEvent e) will be called.
-        // You could also set a different object, if you wanted
-        // a different object to respond to the button click
 
         balanceLabel = new JLabel("Current Balance: $" + user.getBalance());
         add(balanceLabel);
-        stockPriceLabel = new JLabel("CRZY Price: $" + market.getStock().getPrice());
-        updatePrice();
-        add(stockPriceLabel);
-        shareLabel = new JLabel("CRZY Shares: " + user.getShareAmount());
-        add(shareLabel);
+        
+        crzyStockPriceLabel = new JLabel("CRZY Price: $" + market.getCrzyStock().getPrice());
+        updateStockPrice();
+        add(crzyStockPriceLabel);
+        crzyShareLabel = new JLabel("CRZY Shares: " + user.getCrzyShareAmount());
+        add(crzyShareLabel);
+
+        tameStockPriceLabel = new JLabel("TAME Price: $" + market.getTameStock().getPrice());
+        updateStockPrice();
+        add(tameStockPriceLabel);
+        tameShareLabel = new JLabel("TAME Shares: " + user.getTameShareAmount());
+        add(tameShareLabel);
 
         add(makeImage(), BorderLayout.CENTER);
         add(btnSave);
         add(btnLoad);
+        
     }
 
     public JScrollPane makeImage() {
@@ -100,7 +106,8 @@ public class UserPanel extends JPanel implements ActionListener {
         } else if (e.getActionCommand().equals("Load")) {
             loadUser();
             checkBalance();
-            checkShares();
+            checkCrzyShares();
+            checkTameShares();
             historyPanel.setUser(user);
             historyPanel.produceHistory(user);
         } else if (e.getActionCommand().equals("Quit")) {
@@ -113,18 +120,25 @@ public class UserPanel extends JPanel implements ActionListener {
         balanceLabel.setText("Current Balance: $" + user.getBalance());
     }
 
-    // EFFECTS: Prints user owned shares
-    public void checkShares() {
-        shareLabel.setText("CRZY Shares: " + user.getShareAmount());
+    // EFFECTS: Prints user owned shares of crzy
+    public void checkCrzyShares() {
+        crzyShareLabel.setText("CRZY Shares: " + user.getCrzyShareAmount());
     }
 
-    // EFFECTS: updates stock price on UI
-    public void updatePrice() {
+    // EFFECTS: Prints user owned shares of tame
+    public void checkTameShares() {
+        crzyShareLabel.setText("TAME Shares: " + user.getTameShareAmount());
+    }
+
+    // EFFECTS: updates crzy stock price on UI
+    public void updateStockPrice() {
         int delay = 1500; // milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                market.getStock().updateStockPrice();
-                stockPriceLabel.setText("CRZY Price: $" + market.getStock().getPrice());
+                market.getCrzyStock().updateStockPrice();
+                crzyStockPriceLabel.setText("CRZY Price: $" + market.getCrzyStock().getPrice());
+                market.getTameStock().updateStockPrice();
+                tameStockPriceLabel.setText("TAME Price: $" + market.getTameStock().getPrice());
             }
         };
         new Timer(delay, taskPerformer).start();

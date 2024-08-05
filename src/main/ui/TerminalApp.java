@@ -1,6 +1,7 @@
 package ui;
 
 import model.User;
+import model.CRZYStock;
 import model.Order;
 import model.Stock;
 
@@ -57,7 +58,7 @@ public class TerminalApp extends JFrame {
     // EFFECTS: initializes accounts
     private void init() {
         user = new User("John");
-        stock = new Stock("CRZY", 10);
+        stock = new CRZYStock(10);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -147,7 +148,7 @@ public class TerminalApp extends JFrame {
             int totalCost = volume * price;
             if (user.getBalance() >= totalCost) { // if funds are sufficient
                 user.decreaseBalance(totalCost); // incur costs
-                user.increaseShares(volume); // receive shares
+                user.increaseCrzyShares(volume); // receive shares
                 Order order = new Order(selected, ticker, price, volume, true); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have bought " + volume + " shares of "
@@ -172,9 +173,9 @@ public class TerminalApp extends JFrame {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (user.getShareAmount() >= volume) { // if share amount are sufficient
+            if (user.getCrzyShareAmount() >= volume) { // if share amount are sufficient
                 user.increaseBalance(totalCost); // receive money
-                user.decreaseShares(volume); // drop shares
+                user.decreaseCrzyShares(volume); // drop shares
                 Order order = new Order(selected, ticker, price, volume, false); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have sold " + volume + " shares of " 

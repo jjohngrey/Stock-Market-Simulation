@@ -14,7 +14,7 @@ public class TestOrder {
     
     @BeforeEach
     void runBefore() {
-        testStock = new Stock("CRZY", 5);
+        testStock = new CRZYStock(5);
         testOrder1 = new Order(testStock, "CRZY", 5, 500, true);
         testOrder2 = new Order(testStock, "CRZY", 5, 400, false);
     }

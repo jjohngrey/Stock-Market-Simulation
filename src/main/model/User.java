@@ -13,8 +13,8 @@ public class User implements Writable {
     private String username;
     private int balance;
 
-    private int shares;
-    private List<Stock> ownedStocks; // used for multiple stocks... not implemented yet
+    private int crzyShares;
+    private int tameShares;
     private List<Order> orderHistory;
 
     // MODIFIES: this
@@ -22,8 +22,8 @@ public class User implements Writable {
     public User(String username) {
         this.username = username;
         this.balance = 10000;
-        this.shares = 0;
-        this.ownedStocks = new ArrayList<Stock>();
+        this.crzyShares = 0;
+        this.tameShares = 0;
         this.orderHistory = new ArrayList<Order>();
     }
 
@@ -51,22 +51,43 @@ public class User implements Writable {
     // REQUIRES: shares >= 0
     // MODIFIES: this
     // EFFECTS: sets shares to share amount
-    public void setShares(int shares) {
-        this.shares = shares;
+    public void setCrzyShares(int shares) {
+        this.crzyShares = shares;
     }
     
     // REQUIRES: shares >= 0
     // MODIFIES: this
     // EFFECTS: Increases shares by the given shares
-    public void increaseShares(int shares) {
-        this.shares += shares;
+    public void increaseCrzyShares(int shares) {
+        this.crzyShares += shares;
     }
     
     // REQUIRES: shares >= 0
     // MODIFIES: this
     // EFFECTS: Decreases shares by the given shares
-    public void decreaseShares(int shares) {
-        this.shares -= shares;
+    public void decreaseCrzyShares(int shares) {
+        this.crzyShares -= shares;
+    }
+
+    // REQUIRES: shares >= 0
+    // MODIFIES: this
+    // EFFECTS: sets shares to share amount
+    public void setTameShares(int shares) {
+        this.tameShares = shares;
+    }
+    
+    // REQUIRES: shares >= 0
+    // MODIFIES: this
+    // EFFECTS: Increases shares by the given shares
+    public void increaseTameShares(int shares) {
+        this.tameShares += shares;
+    }
+    
+    // REQUIRES: shares >= 0
+    // MODIFIES: this
+    // EFFECTS: Decreases shares by the given shares
+    public void decreaseTameShares(int shares) {
+        this.tameShares -= shares;
     }
 
     // MODIFIES: this
@@ -88,12 +109,12 @@ public class User implements Writable {
         return balance;
     }
 
-    public int getShareAmount() {
-        return shares;
+    public int getCrzyShareAmount() {
+        return crzyShares;
     }
     
-    public List<Stock> getOwnedStocks() {
-        return ownedStocks;
+    public int getTameShareAmount() {
+        return tameShares;
     }
 
     public List<Order> getOrderHistory() {
@@ -105,8 +126,8 @@ public class User implements Writable {
         JSONObject json = new JSONObject();
         json.put("username", username);
         json.put("balance", balance);
-        json.put("shares", shares);
-        json.put("ownedStocks", ownedStocks);
+        json.put("crzyShares", crzyShares);
+        json.put("tameShares", tameShares);
         json.put("orderHistory", orderHistoryToJson());
         return json;
     }

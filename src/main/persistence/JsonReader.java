@@ -1,5 +1,6 @@
 package persistence;
 
+import model.CRZYStock;
 import model.Order;
 import model.Stock;
 import model.User;
@@ -44,7 +45,8 @@ public class JsonReader {
     private User parseUser(JSONObject jsonObject) {
         String username = jsonObject.getString("username");
         User user = new User(username);
-        addShares(user, jsonObject);
+        addCrzyShares(user, jsonObject);
+        addTameShares(user, jsonObject);
         addBalance(user, jsonObject);
         addOrderHistory(user, jsonObject);
         return user;
@@ -52,9 +54,16 @@ public class JsonReader {
 
     // MODIFIES: user
     // EFFECTS: parses shares from JSON object and sets it for the user
-    private void addShares(User user, JSONObject jsonObject) {
-        int shares = jsonObject.getInt("shares");
-        user.setShares(shares);
+    private void addCrzyShares(User user, JSONObject jsonObject) {
+        int shares = jsonObject.getInt("crzyShares");
+        user.setCrzyShares(shares);
+    }
+    
+    // MODIFIES: user
+    // EFFECTS: parses shares from JSON object and sets it for the user
+    private void addTameShares(User user, JSONObject jsonObject) {
+        int shares = jsonObject.getInt("tameShares");
+        user.setTameShares(shares);
     }
 
     // MODIFIES: user
@@ -79,7 +88,7 @@ public class JsonReader {
     private void addOrder(User user, JSONObject jsonObject) {
         String ticker = jsonObject.getString("ticker");
         int price = jsonObject.getInt("price");
-        Stock stock = new Stock(ticker, price);
+        Stock stock = new CRZYStock(price);
         int shares = jsonObject.getInt("shares");
         boolean orderType = jsonObject.getBoolean("orderType");
         Order order = new Order(stock, ticker, price, shares, orderType);

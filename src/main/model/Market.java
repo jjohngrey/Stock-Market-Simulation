@@ -2,21 +2,27 @@ package model;
 
 public class Market {
     private User user;
-    private Stock stock;
+    private Stock crzyStock;
+    private Stock tameStock;
     
     // Constructs a market
 	// EFFECTS:  creates a user with given name and stock with given stock
     public Market() {
         user = new User("John");
-        stock = new Stock("CRZY", 10);
+        crzyStock = new CRZYStock(20);
+        tameStock = new TAMEStock(10);
     }
 
     public User getUser() {
         return user;
     }
 
-    public Stock getStock() {
-        return stock;
+    public Stock getCrzyStock() {
+        return crzyStock;
+    }
+
+    public Stock getTameStock() {
+        return tameStock;
     }
 
 

@@ -38,7 +38,7 @@ class TestJsonReader extends TestJson {
         JsonReader reader = new JsonReader("./data/tests/testReaderGeneralUser.json");
         try {
             User user = reader.read();
-            Stock stock = new Stock("CRZY", 10);
+            Stock stock = new CRZYStock(10);
             assertEquals("John", user.getUsername());
             List<Order> order = user.getOrderHistory();
             assertEquals(2, order.size());

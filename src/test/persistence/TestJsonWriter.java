@@ -37,8 +37,7 @@ class TestJsonWriter extends TestJson {
             JsonReader reader = new JsonReader("./data/tests/testWriterEmptyUser.json");
             user = reader.read();
             assertEquals("Test User", user.getUsername());
-            assertEquals(0, user.getShareAmount());
-            assertEquals(0, user.getOwnedStocks().size());
+            assertEquals(0, user.getCrzyShareAmount());
             assertEquals(10000, user.getBalance());
             assertEquals(0, user.numOrders());
         } catch (IOException e) {
@@ -50,7 +49,7 @@ class TestJsonWriter extends TestJson {
     void testWriterGeneralUser() {
         try {
             User user = new User("John");
-            Stock stock = new Stock("CRZY", 10);
+            Stock stock = new CRZYStock(10);
             Order order1 = new Order(stock, "CRZY", 10, 20, true);
             Order order2 = new Order(stock, "CRZY", 10, 15, false);
 
