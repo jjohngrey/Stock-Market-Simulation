@@ -21,10 +21,10 @@ import java.io.IOException;
 public class TerminalApp extends JFrame {
     
     private static final String JSON_STORE = "./data/workroom.json";
-    private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private Scanner input;
     private User user;
     private Stock stock;
 

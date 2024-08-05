@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import model.Order;
 import model.Stock;
+import model.User;
 import model.Market;
 
 /*
@@ -25,14 +26,16 @@ public class BuyPanel extends JPanel implements ActionListener {
     private Market market;
     private UserPanel userPanel;
     private HistoryPanel historyPanel;
+    private User user;
 
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
     // updates this with the game whose score is to be displayed
-    public BuyPanel(Market market, UserPanel mp, HistoryPanel hp) {
+    public BuyPanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
         this.market = market;
         this.userPanel = mp;
         this.historyPanel = hp;
+        this.user = user;
 
         setBackground(new Color(180, 180, 180));
         setBounds(250, 250, 250, 250);
@@ -54,14 +57,14 @@ public class BuyPanel extends JPanel implements ActionListener {
         add(btnBuy);
     }
 
-    // This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Buy")) {
             buyStock();
             userPanel.checkBalance();
             userPanel.checkShares();
             buyField.setText("");
-            historyPanel.produceHistory();
+            historyPanel.produceHistory(user);
         }
     }
 
@@ -77,11 +80,11 @@ public class BuyPanel extends JPanel implements ActionListener {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (market.getUser().getBalance() >= totalCost) { // if funds are sufficient
-                market.getUser().decreaseBalance(totalCost); // incur costs
-                market.getUser().increaseShares(volume); // receive shares
+            if (user.getBalance() >= totalCost) { // if funds are sufficient
+                user.decreaseBalance(totalCost); // incur costs
+                user.increaseShares(volume); // receive shares
                 Order order = new Order(selected, ticker, price, volume, true); // create new order
-                market.getUser().addToOrderHistory(order); // add to orderHistory
+                user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have bought " + volume + " shares of "
                         + market.getStock().getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
@@ -89,5 +92,11 @@ public class BuyPanel extends JPanel implements ActionListener {
                 System.out.println("You do not have sufficient funds.");
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes the user to the loaded user
+    public void setUser(User user) {
+        this.user = user;
     }
 }

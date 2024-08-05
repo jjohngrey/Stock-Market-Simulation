@@ -3,6 +3,7 @@ package ui.gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.List;
 
 import javax.swing.JButton;
@@ -11,8 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 
-import model.Market;
 import model.Order;
+import model.User;
 
 /*
  * Represents the panel in which the scoreboard is displayed.
@@ -22,13 +23,13 @@ public class HistoryPanel extends JPanel implements ActionListener {
     private JTable tableHistory;
     private DefaultTableModel tableModel;
 
-    private Market market;
+    private User user;
 
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
     // updates this with the game whose score is to be displayed
-    public HistoryPanel(Market market) {
-        this.market = market;
+    public HistoryPanel(User user) {
+        this.user = user;
 
         setBackground(new Color(180, 180, 180));
 
@@ -50,27 +51,33 @@ public class HistoryPanel extends JPanel implements ActionListener {
         add(sp);
     }
 
-    // This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("History")) {
-            produceHistory();
+            produceHistory(user);
         }
     }
 
     // EFFECTS: For order in order history, prints the order
-    public void produceHistory() {
+    public void produceHistory(User user) {
         tableModel.setRowCount(0);
-        List<Order> orderHistory = market.getUser().getOrderHistory();
+        List<Order> orderHistory = user.getOrderHistory();
         for (int i = 0; i < orderHistory.size(); i++) {
             Order order = orderHistory.get(i);
             if (order.getOrderType()) {
-                tableModel.addRow(
-                        new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" });
+                Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" };
+                tableModel.addRow(obj);
             } else {
-                tableModel
-                        .addRow(new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" });
+                Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
+                tableModel.addRow(object);
             }
 
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes the user to the loaded user
+    public void setUser(User user) {
+        this.user = user;
     }
 }

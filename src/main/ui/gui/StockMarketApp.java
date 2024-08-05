@@ -1,9 +1,9 @@
 package ui.gui;
 
 import java.io.FileNotFoundException;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,14 +30,13 @@ public class StockMarketApp extends JFrame {
         
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));        
         setLayout(new FlowLayout());
-        // setLayout(new GridLayout(3, 4));
     
         market = new Market();
 
-        up = new UserPanel(market);
-        hp = new HistoryPanel(market);
-        bp = new BuyPanel(market, up, hp);
-        sp = new SellPanel(market, up, hp);
+        hp = new HistoryPanel(market.getUser());
+        up = new UserPanel(market, hp, bp, sp);
+        bp = new BuyPanel(market, up, hp, market.getUser());
+        sp = new SellPanel(market, up, hp, market.getUser());
 
         add(up);
         add(bp);

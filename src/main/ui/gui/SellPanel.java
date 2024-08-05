@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import model.Order;
 import model.Stock;
+import model.User;
 import model.Market;
 
 /*
@@ -25,14 +26,16 @@ public class SellPanel extends JPanel implements ActionListener {
     private HistoryPanel historyPanel;
     private UserPanel userPanel;
     private Market market;
+    private User user;
 
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
     // updates this with the game whose score is to be displayed
-    public SellPanel(Market market, UserPanel mp, HistoryPanel hp) {
+    public SellPanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
         this.market = market;
         this.userPanel = mp;
         this.historyPanel = hp;
+        this.user = user;
 
         setBackground(new Color(180, 180, 180));
 
@@ -53,14 +56,14 @@ public class SellPanel extends JPanel implements ActionListener {
         add(btnSell);
     }
 
-    // This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Sell")) {
             sellStock();
             userPanel.checkBalance();
             userPanel.checkShares();
             sellField.setText("");
-            historyPanel.produceHistory();
+            historyPanel.produceHistory(user);
         }
     }
 
@@ -77,11 +80,11 @@ public class SellPanel extends JPanel implements ActionListener {
 
         if (volume >= 0) {
             int totalCost = volume * price;
-            if (market.getUser().getShareAmount() >= volume) { // if share amount are sufficient
-                market.getUser().increaseBalance(totalCost); // receive money
-                market.getUser().decreaseShares(volume); // drop shares
+            if (user.getShareAmount() >= volume) { // if share amount are sufficient
+                user.increaseBalance(totalCost); // receive money
+                user.decreaseShares(volume); // drop shares
                 Order order = new Order(selected, ticker, price, volume, false); // create new order
-                market.getUser().addToOrderHistory(order); // add to orderHistory
+                user.addToOrderHistory(order); // add to orderHistory
                 System.out.println("You have sold " + volume + " shares of "
                         + market.getStock().getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
@@ -89,5 +92,11 @@ public class SellPanel extends JPanel implements ActionListener {
                 System.out.println("You do not have that many shares to sell.");
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes the user to the loaded user
+    public void setUser(User user) {
+        this.user = user;
     }
 }
