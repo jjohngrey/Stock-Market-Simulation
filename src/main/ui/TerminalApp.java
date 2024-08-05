@@ -3,8 +3,11 @@ package ui;
 import model.User;
 import model.Order;
 import model.Stock;
+
 import persistence.JsonReader;
 import persistence.JsonWriter;
+
+import javax.swing.JFrame;
 
 import java.util.Scanner;
 import java.util.List;
@@ -15,17 +18,39 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // Stock simulation
-public class App {
+public class TerminalApp extends JFrame {
+    
     private static final String JSON_STORE = "./data/workroom.json";
-    private User user;
-    private Stock stock;
     private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private User user;
+    private Stock stock;
+
     // EFFECTS: runs the simulation application
-    public App() throws FileNotFoundException {
+    public TerminalApp() throws FileNotFoundException {
+        // super("Stock Market Simulation");
+        // setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // setPreferredSize(new Dimension(800, 800));
+        // ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13) );
+        // setLayout(new FlowLayout());
+        // market = new Market();
+
+        // // mp = new MainPanel(market);
+        // // bp = new BuyPanel(market, mp);
+        // // sp = new SellPanel(market, mp);
+
+        // // add(mp);
+        // // add(bp);
+        // // add(sp);
+
         runMarket();
+
+        // pack();
+        // setLocationRelativeTo(null);
+        // setVisible(true);
+        // setResizable(false);
     }
 
     // MODIFIES: this
@@ -33,6 +58,7 @@ public class App {
     private void init() {
         user = new User("John");
         stock = new Stock("CRZY", 10);
+
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -64,6 +90,8 @@ public class App {
         System.out.println("\nMarkets have closed for today! Come back again tomorrow!");
     }
 
+    
+
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
@@ -86,6 +114,7 @@ public class App {
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
+
         System.out.println("\nSelect from:");
         System.out.println("");
         System.out.println("\tcheck     ->      check balance");
