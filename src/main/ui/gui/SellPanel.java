@@ -24,36 +24,36 @@ public class SellPanel extends JPanel implements ActionListener {
 
     private HistoryPanel historyPanel;
     private UserPanel userPanel;
-	private Market market;
-	
-	// Constructs a score panel
-	// effects: sets the background colour and draws the initial labels;
-	//          updates this with the game whose score is to be displayed
-	public SellPanel(Market market, UserPanel mp, HistoryPanel hp) {
-		this.market = market;
+    private Market market;
+
+    // Constructs a score panel
+    // effects: sets the background colour and draws the initial labels;
+    // updates this with the game whose score is to be displayed
+    public SellPanel(Market market, UserPanel mp, HistoryPanel hp) {
+        this.market = market;
         this.userPanel = mp;
         this.historyPanel = hp;
 
-		setBackground(new Color(180, 180, 180));
+        setBackground(new Color(180, 180, 180));
 
         JButton btnSell = new JButton("Sell");
         btnSell.setActionCommand("Sell");
-        btnSell.addActionListener(this); 
-                                    // Sets "this" object as an action listener for btn
-                                     // so that when the btn is clicked,
-                                     // this.actionPerformed(ActionEvent e) will be called.
-                                     // You could also set a different object, if you wanted
-                                     // a different object to respond to the button click
-        
-		sellLabel = new JLabel("Sell: ");
+        btnSell.addActionListener(this);
+        // Sets "this" object as an action listener for btn
+        // so that when the btn is clicked,
+        // this.actionPerformed(ActionEvent e) will be called.
+        // You could also set a different object, if you wanted
+        // a different object to respond to the button click
+
+        sellLabel = new JLabel("Sell: ");
         sellField = new JTextField(5);
-        
+
         add(sellLabel);
         add(sellField);
         add(btnSell);
-	}
+    }
 
-	//This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Sell")) {
             sellStock();
@@ -82,7 +82,7 @@ public class SellPanel extends JPanel implements ActionListener {
                 market.getUser().decreaseShares(volume); // drop shares
                 Order order = new Order(selected, ticker, price, volume, false); // create new order
                 market.getUser().addToOrderHistory(order); // add to orderHistory
-                System.out.println("You have sold " + volume + " shares of " 
+                System.out.println("You have sold " + volume + " shares of "
                         + market.getStock().getTicker() + " at $" + price + " price.");
                 System.out.println("Order is successful.");
             } else {

@@ -28,7 +28,7 @@ public class StockMarketApp extends JFrame {
         setIconImage(image.getImage());
         setPreferredSize(new Dimension(800, 800));
         
-        ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13) );
+        ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));        
         setLayout(new FlowLayout());
         // setLayout(new GridLayout(3, 4));
     

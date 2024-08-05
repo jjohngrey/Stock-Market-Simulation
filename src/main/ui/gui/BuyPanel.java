@@ -22,39 +22,39 @@ public class BuyPanel extends JPanel implements ActionListener {
     private JLabel buyLabel;
     private JTextField buyField;
 
-	private Market market;
+    private Market market;
     private UserPanel userPanel;
     private HistoryPanel historyPanel;
-	
-	// Constructs a score panel
-	// effects: sets the background colour and draws the initial labels;
-	//          updates this with the game whose score is to be displayed
-	public BuyPanel(Market market, UserPanel mp, HistoryPanel hp) {
-		this.market = market;
+
+    // Constructs a score panel
+    // effects: sets the background colour and draws the initial labels;
+    // updates this with the game whose score is to be displayed
+    public BuyPanel(Market market, UserPanel mp, HistoryPanel hp) {
+        this.market = market;
         this.userPanel = mp;
         this.historyPanel = hp;
 
-		setBackground(new Color(180, 180, 180));
+        setBackground(new Color(180, 180, 180));
         setBounds(250, 250, 250, 250);
 
         JButton btnBuy = new JButton("Buy");
         btnBuy.setActionCommand("Buy");
-        btnBuy.addActionListener(this); 
-                                    // Sets "this" object as an action listener for btn
-                                     // so that when the btn is clicked,
-                                     // this.actionPerformed(ActionEvent e) will be called.
-                                     // You could also set a different object, if you wanted
-                                     // a different object to respond to the button click
-        
-		buyLabel = new JLabel("Buy: ");
+        btnBuy.addActionListener(this);
+        // Sets "this" object as an action listener for btn
+        // so that when the btn is clicked,
+        // this.actionPerformed(ActionEvent e) will be called.
+        // You could also set a different object, if you wanted
+        // a different object to respond to the button click
+
+        buyLabel = new JLabel("Buy: ");
         buyField = new JTextField(5);
-        
+
         add(buyLabel);
         add(buyField);
         add(btnBuy);
-	}
+    }
 
-	//This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Buy")) {
             buyStock();
@@ -65,13 +65,13 @@ public class BuyPanel extends JPanel implements ActionListener {
         }
     }
 
-	// MODIFIES: User
+    // MODIFIES: User
     // EFFECTS: Checks if user has enough money to buy, if they do, buys shares
     // and adds to order history
     // otherwise, does nothing
     public void buyStock() {
         Stock selected = market.getStock();
-		int volume = Integer.valueOf(buyField.getText());
+        int volume = Integer.valueOf(buyField.getText());
         String ticker = selected.getTicker();
         int price = selected.getPrice();
 

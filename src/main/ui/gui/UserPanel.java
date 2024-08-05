@@ -18,18 +18,18 @@ import model.Market;
 public class UserPanel extends JPanel implements ActionListener {
 
     private JLabel stockPriceLabel;
-	private JLabel balanceLabel;
+    private JLabel balanceLabel;
     private JLabel shareLabel;
 
-	private Market market;
-	
-	// Constructs a score panel
-	// effects: sets the background colour and draws the initial labels;
-	//          updates this with the game whose score is to be displayed
-	public UserPanel(Market market) {
-		this.market = market;
+    private Market market;
 
-		setBackground(new Color(180, 180, 180));
+    // Constructs a score panel
+    // effects: sets the background colour and draws the initial labels;
+    // updates this with the game whose score is to be displayed
+    public UserPanel(Market market) {
+        this.market = market;
+
+        setBackground(new Color(180, 180, 180));
 
         JButton btnSave = new JButton("Save");
         JButton btnLoad = new JButton("Load");
@@ -37,26 +37,19 @@ public class UserPanel extends JPanel implements ActionListener {
         btnSave.setActionCommand("Save");
         btnLoad.setActionCommand("Load");
         btnQuit.setActionCommand("Quit");
-        btnSave.addActionListener(this); 
-        btnLoad.addActionListener(this); 
-        btnQuit.addActionListener(this); 
-                                    // Sets "this" object as an action listener for btn
-                                     // so that when the btn is clicked,
-                                     // this.actionPerformed(ActionEvent e) will be called.
-                                     // You could also set a different object, if you wanted
-                                     // a different object to respond to the button click
-        
+        btnSave.addActionListener(this);
+        btnLoad.addActionListener(this);
+        btnQuit.addActionListener(this);
+        // Sets "this" object as an action listener for btn
+        // so that when the btn is clicked,
+        // this.actionPerformed(ActionEvent e) will be called.
+        // You could also set a different object, if you wanted
+        // a different object to respond to the button click
+
         balanceLabel = new JLabel("Current Balance: $" + market.getUser().getBalance());
         add(balanceLabel);
         stockPriceLabel = new JLabel("CRZY Price: $" + market.getStock().getPrice());
-        int delay = 2000; //milliseconds
-            ActionListener taskPerformer = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    market.getStock().updateStockPrice();
-                    stockPriceLabel.setText("CRZY Price: $" + market.getStock().getPrice());
-                }
-            };
-            new Timer(delay, taskPerformer).start();
+        updatePrice();
         add(stockPriceLabel);
         shareLabel = new JLabel("CRZY Shares: " + market.getUser().getShareAmount());
         add(shareLabel);
@@ -64,9 +57,9 @@ public class UserPanel extends JPanel implements ActionListener {
         add(btnSave);
         add(btnLoad);
         add(btnQuit);
-	}
+    }
 
-	//This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Save")) {
             // saveUser();
@@ -75,7 +68,7 @@ public class UserPanel extends JPanel implements ActionListener {
         } else if (e.getActionCommand().equals("Quit")) {
             // idk
         }
-        
+
     }
 
     // EFFECTS: Prints user current balance
@@ -88,8 +81,14 @@ public class UserPanel extends JPanel implements ActionListener {
         shareLabel.setText("CRZY Shares: " + market.getUser().getShareAmount());
     }
 
-    // // EFFECTS: Updates orderHistory
-    // public void updateOrderHistory() {
-    //     historyLabel.setText("History: " + market.getUser().getOrderHistory());
-    // }
+    public void updatePrice() {
+        int delay = 1500; // milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                market.getStock().updateStockPrice();
+                stockPriceLabel.setText("CRZY Price: $" + market.getStock().getPrice());
+            }
+        };
+        new Timer(delay, taskPerformer).start();
+    }
 }

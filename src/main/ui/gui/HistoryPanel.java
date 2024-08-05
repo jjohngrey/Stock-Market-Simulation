@@ -22,19 +22,19 @@ public class HistoryPanel extends JPanel implements ActionListener {
     private JTable tableHistory;
     private DefaultTableModel tableModel;
 
-	private Market market;
-	
-	// Constructs a score panel
-	// effects: sets the background colour and draws the initial labels;
-	//          updates this with the game whose score is to be displayed
-    public HistoryPanel(Market market) {
-		this.market = market;
+    private Market market;
 
-		setBackground(new Color(180, 180, 180));
+    // Constructs a score panel
+    // effects: sets the background colour and draws the initial labels;
+    // updates this with the game whose score is to be displayed
+    public HistoryPanel(Market market) {
+        this.market = market;
+
+        setBackground(new Color(180, 180, 180));
 
         JButton btnHistory = new JButton("History");
         btnHistory.setActionCommand("History");
-        btnHistory.addActionListener(this); 
+        btnHistory.addActionListener(this);
 
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Ticker");
@@ -48,9 +48,9 @@ public class HistoryPanel extends JPanel implements ActionListener {
 
         add(btnHistory);
         add(sp);
-	}
+    }
 
-    //This is the method that is called when the the JButton btn is clicked
+    // This is the method that is called when the the JButton btn is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("History")) {
             produceHistory();
@@ -64,11 +64,13 @@ public class HistoryPanel extends JPanel implements ActionListener {
         for (int i = 0; i < orderHistory.size(); i++) {
             Order order = orderHistory.get(i);
             if (order.getOrderType()) {
-                tableModel.addRow(new Object[]{order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought"});
+                tableModel.addRow(
+                        new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" });
             } else {
-                tableModel.addRow(new Object[]{order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold"});
+                tableModel
+                        .addRow(new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" });
             }
-            
+
         }
     }
 }
