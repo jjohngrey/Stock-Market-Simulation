@@ -75,6 +75,17 @@ public class UserPanel extends JPanel implements ActionListener {
         add(btnLoad);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets crzy panel to give crzy panel
+    public void setCrzyPanel(CrzyPanel cp) {
+        this.crzyPanel = cp;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets tame panel to give tame panel
+    public void setTamePanel(TamePanel tp) {
+        this.tamePanel = tp;
+    }
 
     // EFFECTS: adds crzy details
     public void addCrzyLabel() {
@@ -103,8 +114,10 @@ public class UserPanel extends JPanel implements ActionListener {
             checkBalance();
             checkCrzyShares();
             checkTameShares();
-            // crzyPanel.setUser(user);
-            // tamePanel.setUser(user);
+            crzyPanel.setUser(user);
+            tamePanel.setUser(user);
+            // crzyPanel.setHistory(historyPanel);
+            // tamePanel.setHistory(historyPanel);
             historyPanel.setUser(user);
             historyPanel.produceHistory(user);
         }

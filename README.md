@@ -26,7 +26,3 @@ This project is of interested to me because I did a stock market competition las
 * You can locate my visual component by looking at the top of the application. There should be a bull with a stock symbol looking like a logo of the app.
 * You can save the state of my application by pressing the save button after making some buy/sell changes.
 * You can reload the state of my application by pressing the load button.
-
-## TODO/fix:
-* Not having buy/sell stocks updated on the same loaded user
-* Not having buy/sell update checkBalance or checkShares after loading user

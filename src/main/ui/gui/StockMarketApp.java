@@ -40,6 +40,8 @@ public class StockMarketApp extends JFrame {
         up = new UserPanel(market, hp, cp, tp);
         cp = new CrzyPanel(market, up, hp, market.getUser());
         tp = new TamePanel(market, up, hp, market.getUser());
+        up.setCrzyPanel(cp);
+        up.setTamePanel(tp);
 
         add(makeImage(), BorderLayout.CENTER);
         add(up);

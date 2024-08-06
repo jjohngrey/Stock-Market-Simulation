@@ -137,4 +137,10 @@ public class CrzyPanel extends JPanel implements ActionListener {
     public void setUser(User user) {
         this.user = user;
     }
+
+    // MODIFIES: this
+    // EFFECTS: changes the history to the loaded history
+    public void setHistory(HistoryPanel hp) {
+        this.historyPanel = hp;
+    }
 }
