@@ -26,9 +26,9 @@ public abstract class Stock {
         amount = r.nextInt(3) + 1;
         int random = Math.random() >= 0.5 ? +1 : -1;
         price += amount * random;
-        if (price < 0) {
-            price = 0;
-            return 0;
+        if (price < 1) {
+            price = 1;
+            return 1;
         } else {
             return price;
         }
