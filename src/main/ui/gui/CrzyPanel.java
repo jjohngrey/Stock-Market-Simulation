@@ -31,12 +31,12 @@ public class CrzyPanel extends JPanel implements ActionListener {
     private HistoryPanel historyPanel;
     private User user;
 
-    // Constructs a score panel
-    // effects: sets the background colour and draws the initial labels;
-    // updates this with the game whose score is to be displayed
-    public CrzyPanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
+    // Constructs a crzy stock panel
+    // EFFECTS: sets the background colour and draws the initial labels
+    // updates with the share amounts and price
+    public CrzyPanel(Market market, UserPanel up, HistoryPanel hp, User user) {
         this.market = market;
-        this.userPanel = mp;
+        this.userPanel = up;
         this.historyPanel = hp;
         this.user = user;
 

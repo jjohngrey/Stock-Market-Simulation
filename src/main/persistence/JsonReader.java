@@ -1,6 +1,6 @@
 package persistence;
 
-import model.CRZYStock;
+import model.CrzyStock;
 import model.Order;
 import model.Stock;
 import model.User;
@@ -88,7 +88,7 @@ public class JsonReader {
     private void addOrder(User user, JSONObject jsonObject) {
         String ticker = jsonObject.getString("ticker");
         int price = jsonObject.getInt("price");
-        Stock stock = new CRZYStock(price);
+        Stock stock = new CrzyStock(price);
         int shares = jsonObject.getInt("shares");
         boolean orderType = jsonObject.getBoolean("orderType");
         Order order = new Order(stock, ticker, price, shares, orderType);

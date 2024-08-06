@@ -16,7 +16,7 @@ public class TestUser {
     @BeforeEach
     void runBefore() {
         testUser = new User("John");
-        testStock = new CRZYStock(5);
+        testStock = new CrzyStock(5);
         testOrder1 = new Order(testStock, "CRZY", 5, 500, true);
 
     }
@@ -26,7 +26,6 @@ public class TestUser {
         assertEquals("John", testUser.getUsername());
         assertEquals(10000, testUser.getBalance());
         assertEquals(0, testUser.getCrzyShareAmount());
-
         assertEquals(0, testUser.numOrders());
     }
 
@@ -49,6 +48,8 @@ public class TestUser {
     void testIncreaseShares() {        
         testUser.increaseCrzyShares(200);
         assertEquals(200, testUser.getCrzyShareAmount());
+        testUser.increaseTameShares(200);
+        assertEquals(200, testUser.getTameShareAmount());
     }
 
     @Test
@@ -57,6 +58,9 @@ public class TestUser {
         testUser.increaseCrzyShares(200);
         testUser.decreaseCrzyShares(190);
         assertEquals(10, testUser.getCrzyShareAmount());
+        testUser.increaseTameShares(200);
+        testUser.decreaseTameShares(190);
+        assertEquals(10, testUser.getTameShareAmount());
     }
 
     @Test

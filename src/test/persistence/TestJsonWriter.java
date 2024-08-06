@@ -49,7 +49,7 @@ class TestJsonWriter extends TestJson {
     void testWriterGeneralUser() {
         try {
             User user = new User("John");
-            Stock stock = new CRZYStock(10);
+            Stock stock = new CrzyStock(10);
             Order order1 = new Order(stock, "CRZY", 10, 20, true);
             Order order2 = new Order(stock, "CRZY", 10, 15, false);
 

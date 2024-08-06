@@ -1,7 +1,7 @@
 {
-    "shares": 0,
-    "ownedStocks": [],
     "balance": 10000,
+    "crzyShares": 0,
     "orderHistory": [],
+    "tameShares": 0,
     "username": "Test User"
 }

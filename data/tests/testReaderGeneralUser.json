@@ -1,7 +1,6 @@
 {
-    "shares": 5,
-    "ownedStocks": [],
     "balance": 9950,
+    "crzyShares": 5,
     "orderHistory": [
         {
             "shares": 20,
@@ -26,5 +25,6 @@
                 }
         }
     ],
+    "tameShares": 0,
     "username": "John"
 }

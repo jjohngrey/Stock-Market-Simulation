@@ -121,17 +121,6 @@ public class User implements Writable {
         return orderHistory;
     }
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("username", username);
-        json.put("balance", balance);
-        json.put("crzyShares", crzyShares);
-        json.put("tameShares", tameShares);
-        json.put("orderHistory", orderHistoryToJson());
-        return json;
-    }
-
     // EFFECTS: returns orderHistory in this user as a JSON array
     private JSONArray orderHistoryToJson() {
         JSONArray jsonArray = new JSONArray();
@@ -142,5 +131,16 @@ public class User implements Writable {
 
         return jsonArray;
     }    
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("username", username);
+        json.put("balance", balance);
+        json.put("crzyShares", crzyShares);
+        json.put("tameShares", tameShares);
+        json.put("orderHistory", orderHistoryToJson());
+        return json;
+    }
 }
 

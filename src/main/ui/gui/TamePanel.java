@@ -34,9 +34,9 @@ public class TamePanel extends JPanel implements ActionListener {
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
     // updates this with the game whose score is to be displayed
-    public TamePanel(Market market, UserPanel mp, HistoryPanel hp, User user) {
+    public TamePanel(Market market, UserPanel up, HistoryPanel hp, User user) {
         this.market = market;
-        this.userPanel = mp;
+        this.userPanel = up;
         this.historyPanel = hp;
         this.user = user;
 

@@ -25,9 +25,9 @@ public class HistoryPanel extends JPanel implements ActionListener {
 
     private User user;
 
-    // Constructs a score panel
-    // effects: sets the background colour and draws the initial labels;
-    // updates this with the game whose score is to be displayed
+    // Constructs a history panel
+    // EFFECTS: sets the background colour and draws the initial labels
+    // updates this with the order histories
     public HistoryPanel(User user) {
         this.user = user;
 
@@ -97,10 +97,12 @@ public class HistoryPanel extends JPanel implements ActionListener {
             Order order = orderHistory.get(i);
             if (order.getTicker().equals("CRZY")) {
                 if (order.getOrderType()) {
-                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" };
+                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(),
+                            "Bought" };
                     tableModel.addRow(obj);
                 } else {
-                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
+                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(),
+                            "Sold" };
                     tableModel.addRow(object);
                 }
             }
@@ -115,10 +117,12 @@ public class HistoryPanel extends JPanel implements ActionListener {
             Order order = orderHistory.get(i);
             if (order.getTicker().equals("TAME")) {
                 if (order.getOrderType()) {
-                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Bought" };
+                    Object[] obj = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(),
+                            "Bought" };
                     tableModel.addRow(obj);
                 } else {
-                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(), "Sold" };
+                    Object[] object = new Object[] { order.getTicker(), "$" + order.getPrice(), order.getShares(),
+                            "Sold" };
                     tableModel.addRow(object);
                 }
             }

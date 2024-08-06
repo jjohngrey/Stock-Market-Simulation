@@ -6,13 +6,15 @@ public class Market {
     private Stock tameStock;
     
     // Constructs a market
+    // MODIFIES: this
 	// EFFECTS:  creates a user with given name and stock with given stock
     public Market() {
         user = new User("John");
-        crzyStock = new CRZYStock(20);
-        tameStock = new TAMEStock(10);
+        crzyStock = new CrzyStock(20);
+        tameStock = new TameStock(10);
     }
 
+    // get methods
     public User getUser() {
         return user;
     }
@@ -24,6 +26,4 @@ public class Market {
     public Stock getTameStock() {
         return tameStock;
     }
-
-
 }

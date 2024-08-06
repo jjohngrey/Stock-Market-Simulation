@@ -1,13 +1,10 @@
 package ui.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 import java.awt.event.ActionEvent;
@@ -39,10 +36,10 @@ public class UserPanel extends JPanel implements ActionListener {
     private JLabel tameStockPriceLabel;
     private JLabel tameShareLabel;
 
-    private JLabel iconImage;
-
     private Market market;
     private HistoryPanel historyPanel;
+    private CrzyPanel crzyPanel;
+    private TamePanel tamePanel;
     private User user;
     
 
@@ -52,8 +49,8 @@ public class UserPanel extends JPanel implements ActionListener {
     public UserPanel(Market market, HistoryPanel hp, CrzyPanel cp, TamePanel tp) {
         this.market = market;
         this.historyPanel = hp;
-        // this.buyPanel = bp;
-        // this.sellPanel = sp;
+        this.crzyPanel = cp;
+        this.tamePanel = tp;
         this.user = market.getUser();
 
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -71,32 +68,30 @@ public class UserPanel extends JPanel implements ActionListener {
         balanceLabel = new JLabel("Current Balance: $" + user.getBalance());
         add(balanceLabel);
         
+        addCrzyLabel();
+        addTameLabel();
+
+        add(btnSave);
+        add(btnLoad);
+    }
+
+
+    // EFFECTS: adds crzy details
+    public void addCrzyLabel() {
         crzyStockPriceLabel = new JLabel("CRZY Price: $" + market.getCrzyStock().getPrice());
         updateStockPrice();
         add(crzyStockPriceLabel);
         crzyShareLabel = new JLabel("CRZY Shares: " + user.getCrzyShareAmount());
         add(crzyShareLabel);
+    }
 
+    // EFFECTS: adds tame details
+    public void addTameLabel() {
         tameStockPriceLabel = new JLabel("TAME Price: $" + market.getTameStock().getPrice());
         updateStockPrice();
         add(tameStockPriceLabel);
         tameShareLabel = new JLabel("TAME Shares: " + user.getTameShareAmount());
         add(tameShareLabel);
-
-        add(makeImage(), BorderLayout.CENTER);
-        add(btnSave);
-        add(btnLoad);
-        
-    }
-
-    public JScrollPane makeImage() {
-        String name = "/Users/johngrey/Downloads/CPSC 210/Personal Project/ProjectStarter/src/main/ui/images/icon.png";
-        ImageIcon image = new ImageIcon(name);
-        JLabel imageLabel = new JLabel(image);
-        JScrollPane scrollPane = new JScrollPane(imageLabel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        return scrollPane;
     }
 
     // This is the method that is called when the JButton btn is clicked
@@ -108,10 +103,10 @@ public class UserPanel extends JPanel implements ActionListener {
             checkBalance();
             checkCrzyShares();
             checkTameShares();
+            // crzyPanel.setUser(user);
+            // tamePanel.setUser(user);
             historyPanel.setUser(user);
             historyPanel.produceHistory(user);
-        } else if (e.getActionCommand().equals("Quit")) {
-            // idk
         }
     }
 
@@ -127,7 +122,7 @@ public class UserPanel extends JPanel implements ActionListener {
 
     // EFFECTS: Prints user owned shares of tame
     public void checkTameShares() {
-        crzyShareLabel.setText("TAME Shares: " + user.getTameShareAmount());
+        tameShareLabel.setText("TAME Shares: " + user.getTameShareAmount());
     }
 
     // EFFECTS: updates crzy stock price on UI

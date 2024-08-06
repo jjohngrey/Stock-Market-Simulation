@@ -1,7 +1,7 @@
 package ui;
 
 import model.User;
-import model.CRZYStock;
+import model.CrzyStock;
 import model.Order;
 import model.Stock;
 
@@ -58,7 +58,7 @@ public class TerminalApp extends JFrame {
     // EFFECTS: initializes accounts
     private void init() {
         user = new User("John");
-        stock = new CRZYStock(10);
+        stock = new CrzyStock(10);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");

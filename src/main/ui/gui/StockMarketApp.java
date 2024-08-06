@@ -2,12 +2,15 @@ package ui.gui;
 
 import java.io.FileNotFoundException;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import model.Market;
@@ -38,6 +41,7 @@ public class StockMarketApp extends JFrame {
         cp = new CrzyPanel(market, up, hp, market.getUser());
         tp = new TamePanel(market, up, hp, market.getUser());
 
+        add(makeImage(), BorderLayout.CENTER);
         add(up);
         add(cp);
         add(tp);
@@ -48,4 +52,15 @@ public class StockMarketApp extends JFrame {
         setVisible(true);
         setResizable(false);
     }
+
+    public JScrollPane makeImage() {
+        String name = "/Users/johngrey/Downloads/CPSC 210/Personal Project/ProjectStarter/src/main/ui/images/icon.png";
+        ImageIcon image = new ImageIcon(name);
+        JLabel imageLabel = new JLabel(image);
+        JScrollPane scrollPane = new JScrollPane(imageLabel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        return scrollPane;
+    }
+
 }
