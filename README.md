@@ -27,6 +27,15 @@ This project is of interested to me because I did a stock market competition las
 * You can save the state of my application by pressing the save button after making some buy/sell changes.
 * You can reload the state of my application by pressing the load button.
 
+## Phase 4: Task 2
+* Tue Aug 06 22:35:00 PDT 2024: Market opened with CRZY set at $20 and TAME set at $10.
+* Tue Aug 06 22:35:03 PDT 2024: Order with CRZY at 20 with 50 number of shares of a true order type (true is buy and false is sell).
+* Tue Aug 06 22:35:04 PDT 2024: Order with TAME at 13 with 50 number of shares of a true order type (true is buy and false is sell).
+* Tue Aug 06 22:35:05 PDT 2024: Order with CRZY at 20 with 20 number of shares of a true order type (true is buy and false is sell).
+* Tue Aug 06 22:35:07 PDT 2024: Order with CRZY at 23 with 19 number of shares of a false order type (true is buy and false is sell).
+* Tue Aug 06 22:35:09 PDT 2024: Order with TAME at 24 with 39 number of shares of a false order type (true is buy and false is sell).
+
 ## TODO
 
-* add insufficient funds text
+* add insufficient funds pop up/not enough shares pop up
+* add time limit

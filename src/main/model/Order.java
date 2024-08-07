@@ -7,10 +7,10 @@ import persistence.Writable;
 // a stock ticker symbol, current price, amount of shares, and buying or selling
 public class Order implements Writable {
     private Stock stock;
-    private String ticker;                 // stock ticker
-    private int price;                     // price at which the stock is bought/sold
-    private int shares;                    // shares traded
-    private boolean orderType;             // true if buy/long, false if sell/short
+    private String ticker; // stock ticker
+    private int price; // price at which the stock is bought/sold
+    private int shares; // shares traded
+    private boolean orderType; // true if buy/long, false if sell/short
 
     // REQUIRES: Shares must be >= 0
     // MODIFIES: this
@@ -21,6 +21,8 @@ public class Order implements Writable {
         this.price = price;
         this.shares = shares;
         this.orderType = orderType;
+        EventLog.getInstance().logEvent(new Event("Order with " + ticker + " at " + price + " with " + shares
+                + " number of shares of a " + orderType + " order type (true is buy and false is sell)."));
     }
 
     // GET METHODS
@@ -43,7 +45,7 @@ public class Order implements Writable {
     public boolean getOrderType() {
         return orderType;
     }
-    
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -55,4 +57,3 @@ public class Order implements Writable {
         return json;
     }
 }
-

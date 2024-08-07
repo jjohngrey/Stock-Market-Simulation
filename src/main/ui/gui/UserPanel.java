@@ -65,7 +65,7 @@ public class UserPanel extends JPanel implements ActionListener {
         btnSave.addActionListener(this);
         btnLoad.addActionListener(this);
 
-        balanceLabel = new JLabel("Current Balance: $" + user.getBalance());
+        balanceLabel = new JLabel("Current Balance: $" + user.getBalance() + "   ");
         add(balanceLabel);
         
         addCrzyLabel();
@@ -89,19 +89,19 @@ public class UserPanel extends JPanel implements ActionListener {
 
     // EFFECTS: adds crzy details
     public void addCrzyLabel() {
-        crzyStockPriceLabel = new JLabel("CRZY Price: $" + market.getCrzyStock().getPrice());
+        crzyStockPriceLabel = new JLabel("CRZY Price: $" + market.getCrzyStock().getPrice() + "   ");
         updateStockPrice();
         add(crzyStockPriceLabel);
-        crzyShareLabel = new JLabel("CRZY Shares: " + user.getCrzyShareAmount());
+        crzyShareLabel = new JLabel("   CRZY Shares: " + user.getCrzyShareAmount() + "   ");
         add(crzyShareLabel);
     }
 
     // EFFECTS: adds tame details
     public void addTameLabel() {
-        tameStockPriceLabel = new JLabel("TAME Price: $" + market.getTameStock().getPrice());
+        tameStockPriceLabel = new JLabel("TAME Price: $" + market.getTameStock().getPrice() + "   ");
         updateStockPrice();
         add(tameStockPriceLabel);
-        tameShareLabel = new JLabel("TAME Shares: " + user.getTameShareAmount());
+        tameShareLabel = new JLabel("   TAME Shares: " + user.getTameShareAmount());
         add(tameShareLabel);
     }
 

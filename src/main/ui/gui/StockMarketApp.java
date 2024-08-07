@@ -1,10 +1,12 @@
 package ui.gui;
 
 import java.io.FileNotFoundException;
-
+import java.util.Collection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import model.Event;
+import model.EventLog;
 import model.Market;
 
 public class StockMarketApp extends JFrame {
@@ -53,8 +57,30 @@ public class StockMarketApp extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        makeWindowListener();
     }
 
+    // EFFECTS: creates a window listener to print log when window is closed
+    public void makeWindowListener() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent event) {
+                print(EventLog.getInstance().getEvents());
+                dispose();
+                System.exit(0);
+            }
+        });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: prints event log to console when application is quit
+    public void print(Collection<Event> events) {
+        for (Event e : events) {
+            System.out.println(e.getDate().toString() + ": " + e.getDescription());
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates a logo to add to the market app ui
     public JScrollPane makeImage() {
         String name = "/Users/johngrey/Downloads/CPSC 210/Personal Project/ProjectStarter/src/main/ui/images/icon.png";
         ImageIcon image = new ImageIcon(name);

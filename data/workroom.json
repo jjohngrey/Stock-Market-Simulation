@@ -1,36 +1,22 @@
 {
-    "balance": 8540,
-    "crzyShares": 30,
+    "balance": 3400,
+    "crzyShares": 50,
     "orderHistory": [
         {
             "shares": 50,
             "orderType": true,
             "ticker": "CRZY",
-            "price": 18,
-            "stock": "model.CRZYStock@416ad4d0"
+            "price": 20,
+            "stock": "model.CrzyStock@3265124a"
         },
         {
-            "shares": 20,
-            "orderType": false,
-            "ticker": "CRZY",
-            "price": 17,
-            "stock": "model.CRZYStock@449c0e6e"
-        },
-        {
-            "shares": 100,
+            "shares": 200,
             "orderType": true,
             "ticker": "TAME",
-            "price": 22,
-            "stock": "model.CRZYStock@60105fb3"
-        },
-        {
-            "shares": 50,
-            "orderType": false,
-            "ticker": "TAME",
-            "price": 26,
-            "stock": "model.CRZYStock@7d148819"
+            "price": 28,
+            "stock": "model.TameStock@5977de91"
         }
     ],
-    "tameShares": 50,
+    "tameShares": 200,
     "username": "John"
 }
