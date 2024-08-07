@@ -26,7 +26,7 @@ This project is of interest to me because I did the high school stock market com
 * You can save the state of my application by pressing the save button after making some buy/sell changes.
 * You can reload the state of my application by pressing the load button.
 
-## Phase 4: Task 2
+## Example of Event Log
 * Wed Aug 07 00:01:54 PDT 2024: Market opened with CRZY set at $20 and TAME set at $10.
 * Wed Aug 07 00:01:57 PDT 2024: File has been saved
 * Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 32 with 50 number of shares of a true order type (true is buy and false is sell).
