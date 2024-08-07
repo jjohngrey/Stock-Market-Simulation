@@ -8,8 +8,6 @@ import model.Stock;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import javax.swing.JFrame;
-
 import java.util.Scanner;
 import java.util.List;
 import java.time.LocalTime;
@@ -19,7 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // Stock simulation
-public class TerminalApp extends JFrame {
+public class TerminalApp {
     
     private static final String JSON_STORE = "./data/workroom.json";
     private JsonWriter jsonWriter;
@@ -31,27 +29,7 @@ public class TerminalApp extends JFrame {
 
     // EFFECTS: runs the simulation application
     public TerminalApp() throws FileNotFoundException {
-        // super("Stock Market Simulation");
-        // setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // setPreferredSize(new Dimension(800, 800));
-        // ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13) );
-        // setLayout(new FlowLayout());
-        // market = new Market();
-
-        // // mp = new MainPanel(market);
-        // // bp = new BuyPanel(market, mp);
-        // // sp = new SellPanel(market, mp);
-
-        // // add(mp);
-        // // add(bp);
-        // // add(sp);
-
         runMarket();
-
-        // pack();
-        // setLocationRelativeTo(null);
-        // setVisible(true);
-        // setResizable(false);
     }
 
     // MODIFIES: this

@@ -47,17 +47,22 @@ public class StockMarketApp extends JFrame {
         up.setCrzyPanel(cp);
         up.setTamePanel(tp);
 
-        add(makeImage(), BorderLayout.CENTER);
-        add(up);
-        add(cp);
-        add(tp);
-        add(hp);
+        addPanels();
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         makeWindowListener();
+    }
+
+    // EFFECTS: adds all the panels
+    public void addPanels() {
+        add(makeImage(), BorderLayout.CENTER);
+        add(up);
+        add(cp);
+        add(tp);
+        add(hp);
     }
 
     // EFFECTS: creates a window listener to print log when window is closed

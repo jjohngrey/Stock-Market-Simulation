@@ -1,22 +1,50 @@
 {
-    "balance": 3400,
-    "crzyShares": 50,
+    "balance": 8560,
+    "crzyShares": 30,
     "orderHistory": [
         {
             "shares": 50,
             "orderType": true,
             "ticker": "CRZY",
-            "price": 20,
-            "stock": "model.CrzyStock@3265124a"
+            "price": 32,
+            "stock": "model.CrzyStock@83dbcc"
         },
         {
-            "shares": 200,
+            "shares": 20,
+            "orderType": true,
+            "ticker": "CRZY",
+            "price": 35,
+            "stock": "model.CrzyStock@83dbcc"
+        },
+        {
+            "shares": 10,
+            "orderType": false,
+            "ticker": "CRZY",
+            "price": 34,
+            "stock": "model.CrzyStock@83dbcc"
+        },
+        {
+            "shares": 50,
             "orderType": true,
             "ticker": "TAME",
-            "price": 28,
-            "stock": "model.TameStock@5977de91"
+            "price": 9,
+            "stock": "model.TameStock@52f57d54"
+        },
+        {
+            "shares": 10,
+            "orderType": false,
+            "ticker": "TAME",
+            "price": 10,
+            "stock": "model.TameStock@52f57d54"
+        },
+        {
+            "shares": 30,
+            "orderType": false,
+            "ticker": "CRZY",
+            "price": 29,
+            "stock": "model.CrzyStock@83dbcc"
         }
     ],
-    "tameShares": 200,
+    "tameShares": 40,
     "username": "John"
 }

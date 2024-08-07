@@ -20,7 +20,6 @@ This project is of interested to me because I did a stock market competition las
 * As a user, I want to be able to have the option to load my stock orders from file.
 
 ## Instructions for Grader:
-
 * You can generate the first required action related to adding multiple orders to a order history by buying/selling a positive number of stocks and pressing the buy/sell button or by loading in a previous game with a order history.
 * You can generate the second required action related to adding multiple orders to a order history by clicking the CRZY or TAME button beside History to view only CRZY or only TAME stocks.
 * You can locate my visual component by looking at the top of the application. There should be a bull with a stock symbol looking like a logo of the app.
@@ -28,14 +27,28 @@ This project is of interested to me because I did a stock market competition las
 * You can reload the state of my application by pressing the load button.
 
 ## Phase 4: Task 2
-* Tue Aug 06 22:35:00 PDT 2024: Market opened with CRZY set at $20 and TAME set at $10.
-* Tue Aug 06 22:35:03 PDT 2024: Order with CRZY at 20 with 50 number of shares of a true order type (true is buy and false is sell).
-* Tue Aug 06 22:35:04 PDT 2024: Order with TAME at 13 with 50 number of shares of a true order type (true is buy and false is sell).
-* Tue Aug 06 22:35:05 PDT 2024: Order with CRZY at 20 with 20 number of shares of a true order type (true is buy and false is sell).
-* Tue Aug 06 22:35:07 PDT 2024: Order with CRZY at 23 with 19 number of shares of a false order type (true is buy and false is sell).
-* Tue Aug 06 22:35:09 PDT 2024: Order with TAME at 24 with 39 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:01:54 PDT 2024: Market opened with CRZY set at $20 and TAME set at $10.
+* Wed Aug 07 00:01:57 PDT 2024: File has been saved
+* Wed Aug 07 00:01:59 PDT 2024: Order with CRZY at 32 with 50 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:02 PDT 2024: Order with CRZY at 35 with 20 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:04 PDT 2024: Order with CRZY at 34 with 10 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:05 PDT 2024: Order with TAME at 9 with 50 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:07 PDT 2024: Order with TAME at 10 with 10 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:08 PDT 2024: Order with CRZY at 29 with 30 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:10 PDT 2024: File has been saved
+* Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 32 with 50 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 35 with 20 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 34 with 10 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: Order with TAME at 9 with 50 number of shares of a true order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: Order with TAME at 10 with 10 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 29 with 30 number of shares of a false order type (true is buy and false is sell).
+* Wed Aug 07 00:02:11 PDT 2024: File has been loaded
+
+## Phase 4: Task 3
+* If I had more time, I would make the update stock price algorithm different for both CRZY and TAME. To do this, I could use an override to change up the numbers so that it would appear that the stocks would not only be moving differently but also at different rates (not within the same range).
+* I think I would also make a Panel class that I could implement/extend because much of my code is repeated. I realized when I was creating the UML diagramn that much of it required the same classes (market, userPanel, user, etc). It seemed odd that I had designed it in such a way that each new panel required all this information individually when I could have just pulled it out and then implemented or extended it.
+* One last thing that I wish I could help change/refactor was to pull out another Panel that could say something like StockPanel and then just does the buy/sell because they have a lot of duplicate code.
 
 ## TODO
-
 * add insufficient funds pop up/not enough shares pop up
 * add time limit

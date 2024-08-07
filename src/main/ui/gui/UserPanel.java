@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import model.Event;
+import model.EventLog;
 import model.Market;
 import model.User;
 
@@ -109,6 +111,7 @@ public class UserPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Save")) {
             saveUser();
+            EventLog.getInstance().logEvent(new Event("File has been saved"));
         } else if (e.getActionCommand().equals("Load")) {
             loadUser();
             checkBalance();
@@ -116,10 +119,9 @@ public class UserPanel extends JPanel implements ActionListener {
             checkTameShares();
             crzyPanel.setUser(user);
             tamePanel.setUser(user);
-            // crzyPanel.setHistory(historyPanel);
-            // tamePanel.setHistory(historyPanel);
             historyPanel.setUser(user);
             historyPanel.produceHistory(user);
+            EventLog.getInstance().logEvent(new Event("File has been loaded"));
         }
     }
 
