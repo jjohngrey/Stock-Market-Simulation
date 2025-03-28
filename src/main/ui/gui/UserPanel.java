@@ -1,23 +1,30 @@
 package ui.gui;
 
 import java.awt.Color;
-
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import model.Event;
 import model.EventLog;
 import model.Market;
 import model.User;
-
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -44,6 +51,9 @@ public class UserPanel extends JPanel implements ActionListener {
     private TamePanel tamePanel;
     private User user;
     
+    private Font p;
+    private Font strong;
+    
 
     // Constructs a score panel
     // effects: sets the background colour and draws the initial labels;
@@ -54,20 +64,26 @@ public class UserPanel extends JPanel implements ActionListener {
         this.crzyPanel = cp;
         this.tamePanel = tp;
         this.user = market.getUser();
+        this.p = new Font("Tahoma", Font.PLAIN, 14);
+        this.strong = new Font("Tahoma", Font.BOLD, 14);
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        setBackground(new Color(180, 180, 180));
+        setBackground(new Color(27,38,59));
 
-        JButton btnSave = new JButton("Save");
-        JButton btnLoad = new JButton("Load");
+        JButton btnSave = new JButton("Save Current Game");
+        JButton btnLoad = new JButton("Load Previous Game");
         btnSave.setActionCommand("Save");
         btnLoad.setActionCommand("Load");
         btnSave.addActionListener(this);
         btnLoad.addActionListener(this);
+        btnSave.setFont(strong);
+        btnLoad.setFont(strong);
 
         balanceLabel = new JLabel("Current Balance: $" + user.getBalance() + "   ");
+        balanceLabel.setFont(strong);
+        balanceLabel.setForeground(Color.WHITE);
         add(balanceLabel);
         
         addCrzyLabel();
@@ -93,8 +109,12 @@ public class UserPanel extends JPanel implements ActionListener {
     public void addCrzyLabel() {
         crzyStockPriceLabel = new JLabel("CRZY Price: $" + market.getCrzyStock().getPrice() + "   ");
         updateStockPrice();
+        crzyStockPriceLabel.setFont(p);
+        crzyStockPriceLabel.setForeground(Color.WHITE);
         add(crzyStockPriceLabel);
         crzyShareLabel = new JLabel("   CRZY Shares: " + user.getCrzyShareAmount() + "   ");
+        crzyShareLabel.setFont(strong);
+        crzyShareLabel.setForeground(Color.WHITE);
         add(crzyShareLabel);
     }
 
@@ -102,8 +122,12 @@ public class UserPanel extends JPanel implements ActionListener {
     public void addTameLabel() {
         tameStockPriceLabel = new JLabel("TAME Price: $" + market.getTameStock().getPrice() + "   ");
         updateStockPrice();
+        tameStockPriceLabel.setFont(strong);
+        tameStockPriceLabel.setForeground(Color.WHITE);
         add(tameStockPriceLabel);
         tameShareLabel = new JLabel("   TAME Shares: " + user.getTameShareAmount());
+        tameShareLabel.setFont(strong);
+        tameShareLabel.setForeground(Color.WHITE);
         add(tameShareLabel);
     }
 
@@ -147,8 +171,10 @@ public class UserPanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent evt) {
                 market.getCrzyStock().updateStockPrice();
                 crzyStockPriceLabel.setText("CRZY Price: $" + market.getCrzyStock().getPrice());
+                crzyStockPriceLabel.setFont(strong);
                 market.getTameStock().updateStockPrice();
                 tameStockPriceLabel.setText("TAME Price: $" + market.getTameStock().getPrice());
+                tameStockPriceLabel.setFont(strong);
             }
         };
         new Timer(delay, taskPerformer).start();

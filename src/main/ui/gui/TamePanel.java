@@ -1,19 +1,17 @@
 package ui.gui;
 
 import java.awt.Color;
-
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import model.Market;
 import model.Order;
 import model.Stock;
 import model.User;
-import model.Market;
 
 /*
  * Represents the panel in which the scoreboard is displayed.
@@ -48,6 +46,8 @@ public class TamePanel extends JPanel implements ActionListener {
         btnBuyTame.addActionListener(this);
         buyTameLabel = new JLabel("Buy TAME: ");
         buyTameField = new JTextField(5);
+        buyTameField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        buyTameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(buyTameLabel);
         add(buyTameField);
         add(btnBuyTame);
@@ -57,6 +57,8 @@ public class TamePanel extends JPanel implements ActionListener {
         btnSellTame.addActionListener(this);
         sellTameLabel = new JLabel("Sell TAME: ");
         sellTameField = new JTextField(5);
+        sellTameField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        sellTameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(sellTameLabel);
         add(sellTameField);
         add(btnSellTame);

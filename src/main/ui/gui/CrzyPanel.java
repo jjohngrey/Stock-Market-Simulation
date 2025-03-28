@@ -1,19 +1,17 @@
 package ui.gui;
 
 import java.awt.Color;
-
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import model.Market;
 import model.Order;
 import model.Stock;
 import model.User;
-import model.Market;
 
 /*
  * Represents the panel in which the scoreboard is displayed.
@@ -48,6 +46,8 @@ public class CrzyPanel extends JPanel implements ActionListener {
         btnBuyCrzy.addActionListener(this);
         buyCrzyLabel = new JLabel("Buy CRZY: ");
         buyCrzyField = new JTextField(5);
+        buyCrzyField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        buyCrzyLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(buyCrzyLabel);
         add(buyCrzyField);
         add(btnBuyCrzy);
@@ -57,6 +57,8 @@ public class CrzyPanel extends JPanel implements ActionListener {
         btnSellCrzy.addActionListener(this);
         sellCrzyLabel = new JLabel("Sell CRZY: ");
         sellCrzyField = new JTextField(5);
+        sellCrzyField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        sellCrzyLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(sellCrzyLabel);
         add(sellCrzyField);
         add(btnSellCrzy);

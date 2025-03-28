@@ -1,20 +1,16 @@
 package ui.gui;
 
-import java.io.FileNotFoundException;
-import java.util.Collection;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import java.io.FileNotFoundException;
+import java.util.Collection;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-
 import model.Event;
 import model.EventLog;
 import model.Market;
@@ -33,10 +29,11 @@ public class StockMarketApp extends JFrame {
         // setSize(800, 800);
         ImageIcon image = new ImageIcon("icon.png");
         setIconImage(image.getImage());
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(1500, 1000));
         
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));        
         setLayout(new FlowLayout());
+        getContentPane().setBackground(new Color(222,219,210));  //Whatever color
     
         market = new Market();
 
