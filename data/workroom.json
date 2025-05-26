@@ -1,22 +1,13 @@
 {
-    "balance": 9770,
+    "balance": 9790,
     "crzyShares": 10,
-    "orderHistory": [
-        {
-            "shares": 20,
-            "orderType": true,
-            "ticker": "CRZY",
-            "price": 22,
-            "stock": "model.CrzyStock@1003b481"
-        },
-        {
-            "shares": 10,
-            "orderType": false,
-            "ticker": "CRZY",
-            "price": 21,
-            "stock": "model.CrzyStock@1003b481"
-        }
-    ],
+    "orderHistory": [{
+        "shares": 10,
+        "orderType": true,
+        "ticker": "CRZY",
+        "price": 21,
+        "stock": "model.CrzyStock@42714db4"
+    }],
     "tameShares": 0,
     "username": "John"
 }

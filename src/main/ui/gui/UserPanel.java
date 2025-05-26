@@ -33,6 +33,7 @@ import model.Market;
 import model.User;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import javax.swing.JOptionPane;
 
 /*
  * Represents the panel in which the scoreboard is displayed.
@@ -235,9 +236,13 @@ public class UserPanel extends JPanel implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(user);
             jsonWriter.close();
-            System.out.println("Saved " + user.getUsername() + " from " + JSON_STORE);
+            JOptionPane.showMessageDialog(this,
+                    "Game saved successfully!",
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(this,
+                    "Unable to save game: file not found.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -246,9 +251,13 @@ public class UserPanel extends JPanel implements ActionListener {
     private void loadUser() {
         try {
             user = jsonReader.read();
-            System.out.println("Loaded " + user.getUsername() + " from " + JSON_STORE);
+            JOptionPane.showMessageDialog(this,
+                    "Game loaded successfully!",
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(this,
+                    "Unable to load game: file not found or corrupted.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

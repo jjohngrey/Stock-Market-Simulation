@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -122,11 +123,13 @@ public class CrzyPanel extends JPanel implements ActionListener {
                 user.increaseCrzyShares(volume); // receive shares
                 Order order = new Order(selected, ticker, price, volume, true); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
-                System.out.println("You have bought " + volume + " shares of "
-                        + market.getCrzyStock().getTicker() + " at $" + price + " price.");
-                System.out.println("Order is successful.");
+                JOptionPane.showMessageDialog(this,
+                        "You have bought " + volume + " shares of " + market.getCrzyStock().getTicker() + " at $" + price + " price.",
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                System.out.println("You do not have sufficient funds.");
+                JOptionPane.showMessageDialog(this,
+                        "You do not have sufficient funds.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -137,7 +140,6 @@ public class CrzyPanel extends JPanel implements ActionListener {
     // otherwise, does nothing
     public void sellCrzyStock() {
         Stock selected = market.getCrzyStock();
-        System.out.print("Enter number of shares to sell: ");
         int volume = Integer.valueOf(sellCrzyField.getText());
         int price = selected.getPrice();
         String ticker = selected.getTicker();
@@ -149,11 +151,13 @@ public class CrzyPanel extends JPanel implements ActionListener {
                 user.decreaseCrzyShares(volume); // drop shares
                 Order order = new Order(selected, ticker, price, volume, false); // create new order
                 user.addToOrderHistory(order); // add to orderHistory
-                System.out.println("You have sold " + volume + " shares of "
-                        + market.getCrzyStock().getTicker() + " at $" + price + " price.");
-                System.out.println("Order is successful.");
+                JOptionPane.showMessageDialog(this,
+                        "You have sold " + volume + " shares of " + market.getCrzyStock().getTicker() + " at $" + price + " price.",
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                System.out.println("You do not have that many shares to sell.");
+                JOptionPane.showMessageDialog(this,
+                        "You do not have that many shares to sell.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
