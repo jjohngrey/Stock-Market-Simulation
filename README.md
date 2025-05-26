@@ -36,7 +36,3 @@ This project is of interest to me because I did the high school stock market com
 * Wed Aug 07 00:02:11 PDT 2024: Order with TAME at 10 with 10 number of shares of a false order type (true is buy and false is sell).
 * Wed Aug 07 00:02:11 PDT 2024: Order with CRZY at 29 with 30 number of shares of a false order type (true is buy and false is sell).
 * Wed Aug 07 00:02:11 PDT 2024: File has been loaded
-
-## TODO
-* add insufficient funds pop up/not enough shares pop up
-* add time limit

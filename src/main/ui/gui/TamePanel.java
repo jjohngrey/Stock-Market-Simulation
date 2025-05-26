@@ -1,13 +1,19 @@
 package ui.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import model.Market;
 import model.Order;
 import model.Stock;
@@ -38,30 +44,46 @@ public class TamePanel extends JPanel implements ActionListener {
         this.historyPanel = hp;
         this.user = user;
 
-        setBackground(new Color(180, 180, 180));
-        setBounds(250, 250, 250, 250);
+        setBackground(Color.WHITE);
+        setBorder(new LineBorder(new Color(220,220,220), 2, true));
+        setPreferredSize(new Dimension(200, 140));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 8, 8, 8);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
 
-        JButton btnBuyTame = new JButton("+");
+        JLabel header = new JLabel("TAME Stock");
+        header.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        header.setForeground(Color.decode("#222222"));
+        add(header, gbc);
+
+        gbc.gridy++;
+        JPanel buyPanel = new JPanel(new GridLayout(1,2,8,0));
+        buyPanel.setBackground(Color.WHITE);
+        buyTameField = new JTextField(5);
+        buyTameField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        JButton btnBuyTame = new JButton("Buy");
+        styleButton(btnBuyTame);
         btnBuyTame.setActionCommand("Buy TAME");
         btnBuyTame.addActionListener(this);
-        buyTameLabel = new JLabel("Buy TAME: ");
-        buyTameField = new JTextField(5);
-        buyTameField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        buyTameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-        add(buyTameLabel);
-        add(buyTameField);
-        add(btnBuyTame);
+        buyPanel.add(buyTameField);
+        buyPanel.add(btnBuyTame);
+        add(buyPanel, gbc);
 
-        JButton btnSellTame = new JButton("-");
+        gbc.gridy++;
+        JPanel sellPanel = new JPanel(new GridLayout(1,2,8,0));
+        sellPanel.setBackground(Color.WHITE);
+        sellTameField = new JTextField(5);
+        sellTameField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        JButton btnSellTame = new JButton("Sell");
+        styleButton(btnSellTame);
         btnSellTame.setActionCommand("Sell TAME");
         btnSellTame.addActionListener(this);
-        sellTameLabel = new JLabel("Sell TAME: ");
-        sellTameField = new JTextField(5);
-        sellTameField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        sellTameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-        add(sellTameLabel);
-        add(sellTameField);
-        add(btnSellTame);
+        sellPanel.add(sellTameField);
+        sellPanel.add(btnSellTame);
+        add(sellPanel, gbc);
     }
 
     // This is the method that is called when the JButton btn is clicked
@@ -72,12 +94,14 @@ public class TamePanel extends JPanel implements ActionListener {
             userPanel.checkTameShares();
             buyTameField.setText("");
             historyPanel.produceHistory(user);
+            historyPanel.updateGraph();
         } else if (e.getActionCommand().equals("Sell TAME")) {
             sellTameStock();
             userPanel.checkBalance();
             userPanel.checkTameShares();
             sellTameField.setText("");
             historyPanel.produceHistory(user);
+            historyPanel.updateGraph();
         }
     }
 
@@ -144,5 +168,12 @@ public class TamePanel extends JPanel implements ActionListener {
     // EFFECTS: changes the history to the loaded history
     public void setHistory(HistoryPanel hp) {
         this.historyPanel = hp;
+    }
+
+    private void styleButton(JButton btn) {
+        btn.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        btn.setBackground(Color.WHITE);
+        btn.setBorder(new LineBorder(new Color(200,200,200), 1));
+        btn.setFocusPainted(false);
     }
 }

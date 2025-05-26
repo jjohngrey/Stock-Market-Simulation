@@ -26,17 +26,17 @@ public class StockMarketApp extends JFrame {
     public StockMarketApp() throws FileNotFoundException {
         super("Stock Market Simulation");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // setSize(800, 800);
-        ImageIcon image = new ImageIcon("icon.png");
-        setIconImage(image.getImage());
-        setPreferredSize(new Dimension(1500, 1000));
-        
-        ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));        
-        setLayout(new FlowLayout());
-        getContentPane().setBackground(new Color(222,219,210));  //Whatever color
-    
-        market = new Market();
+        setPreferredSize(new Dimension(1200, 800));
+        ((JPanel) getContentPane()).setBorder(new EmptyBorder(24, 24, 24, 24));
+        getContentPane().setBackground(Color.decode("#f7f7f7"));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(12, 12, 12, 12);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 0;
 
+        market = new Market();
         hp = new HistoryPanel(market.getUser());
         up = new UserPanel(market, hp, cp, tp);
         cp = new CrzyPanel(market, up, hp, market.getUser());
@@ -44,13 +44,40 @@ public class StockMarketApp extends JFrame {
         up.setCrzyPanel(cp);
         up.setTamePanel(tp);
 
-        addPanels();
+        // UserPanel (top left)
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weighty = 0.1;
+        add(up, gbc);
+
+        // CrzyPanel (top right)
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.weighty = 0.1;
+        add(cp, gbc);
+
+        // TamePanel (top right, next to CrzyPanel)
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weighty = 0.1;
+        add(tp, gbc);
+
+        // HistoryPanel (bottom, spanning all columns)
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 4;
+        gbc.weighty = 0.9;
+        add(hp, gbc);
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         makeWindowListener();
+
+        up.updateStockPrice();
     }
 
     // EFFECTS: adds all the panels
